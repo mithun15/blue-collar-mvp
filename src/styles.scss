@@ -1,1 +1,20 @@
 /* You can add global styles to this file, and also import other style files */
+// @import "assets/layout/layout.scss";
+// @import "primeng/resources/themes/aura-light-blue/theme.css";
+@import "primeicons/primeicons.css";
+
+body {
+    background: aliceblue;
+    margin: 0px;
+}
+
+.full-width {
+    width: 100%;
+}
+
+.flex-column-absolute-center {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}

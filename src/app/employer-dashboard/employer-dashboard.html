@@ -1,0 +1,104 @@
+<div class="employer-dashboard">
+  <div style="display: flex; justify-content: space-between; margin-bottom: 2rem">
+    <span class="title">Dashboard</span>
+    <p-splitbutton label="Post New Job" icon="pi pi-plus" severity="info" [model]="items" />
+  </div>
+  <div class="charts">
+    <p-card>
+      <p-chart type="pie" [data]="piedata" [options]="pieoptions" class="w-full md:w-[30rem]" />
+    </p-card>
+    <p-card>
+      <p-chart
+        type="doughnut"
+        [data]="piedata"
+        [options]="pieoptions"
+        class="w-full md:w-[30rem]"
+      />
+    </p-card>
+    <p-card>
+      <p-chart type="bar" [data]="basicData" [options]="basicOptions" />
+    </p-card>
+  </div>
+  <div style="display: flex; gap: 4rem" class="number-cards">
+    <p-card>
+      <div class="flex-column-absolute-center">
+        <h3>Workers Today</h3>
+        <p>15</p>
+      </div>
+    </p-card>
+    <p-card>
+      <div class="flex-column-absolute-center">
+        <h3>Active Job Posts</h3>
+        <p>3</p>
+      </div>
+    </p-card>
+    <p-card>
+      <div class="flex-column-absolute-center">
+        <h3>Workers Needed</h3>
+        <p>5</p>
+      </div>
+    </p-card>
+    <p-card>
+      <div class="flex-column-absolute-center">
+        <h3>Pending Payments</h3>
+        <p>15000</p>
+      </div>
+    </p-card>
+  </div>
+  <!-- <div style="display: flex; justify-content: space-around">
+    <p-button [raised]="true" severity="info">
+      <i class="pi pi-plus"></i>
+      <span class="px-4">Post New Job</span>
+    </p-button>
+    <p-button [raised]="true" severity="info">
+      <i class="pi pi-search"></i>
+      <span class="px-4">Find Workers Nearby</span>
+    </p-button>
+    <p-button [raised]="true" severity="info">
+      <i class="pi pi-clipboard"></i>
+      <span class="px-4">Mark Attendance</span>
+    </p-button>
+    <p-button [raised]="true" severity="info">
+      <i class="pi pi-indian-rupee"></i>
+      <span class="px-4">Pay Workers</span>
+    </p-button>
+  </div> -->
+  <div style="display: flex; gap: 2rem; margin-top: 2rem">
+    <div class="card" style="flex: 1">
+      <p-table [value]="workers">
+        <ng-template #header>
+          <tr>
+            <th>Name</th>
+            <th>Work</th>
+            <th>Attendance</th>
+          </tr>
+        </ng-template>
+        <ng-template #body let-product>
+          <tr>
+            <td>{{ product.code }}</td>
+            <td>{{ product.name }}</td>
+            <td>{{ product.category }}</td>
+          </tr>
+        </ng-template>
+      </p-table>
+    </div>
+    <div class="card" style="flex: 1">
+      <p-table [value]="workers">
+        <ng-template #header>
+          <tr>
+            <th>Name</th>
+            <th>Work</th>
+            <th>Category</th>
+          </tr>
+        </ng-template>
+        <ng-template #body let-product>
+          <tr>
+            <td>{{ product.code }}</td>
+            <td>{{ product.name }}</td>
+            <td>{{ product.category }}</td>
+          </tr>
+        </ng-template>
+      </p-table>
+    </div>
+  </div>
+</div>

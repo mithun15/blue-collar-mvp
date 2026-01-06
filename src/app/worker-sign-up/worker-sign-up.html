@@ -1,0 +1,62 @@
+<div
+  style="display: flex; flex-direction: column; align-items: center"
+  [formGroup]="workerSignUpForm"
+>
+  <div style="display: flex; flex-direction: column; justify-content: center; align-items: center">
+    <h1 style="margin-bottom: 0px">Sign Up Form</h1>
+    <p>Fill some basic details.</p>
+  </div>
+  <p-card>
+    @if(step() === 1) {
+    <div
+      style="display: flex; justify-content: center; align-items: center; gap: 1rem; width: 100%"
+    >
+      <label>Full Name</label>
+      <input type="text" pInputText style="flex: 1" formControlName="fullName" />
+    </div>
+    <p-divider />
+    <div>
+      <p style="margin-bottom: 1rem">Select your work</p>
+      @for(category of categories; track category) {
+      <div class="field-checkbox" style="display: flex; gap: 1rem; margin-bottom: 1rem">
+        <p-radiobutton
+          [inputId]="category.key"
+          name="category"
+          [value]="category"
+          formControlName="work"
+        />
+        <label [for]="category.key" class="ml-2">{{ category.name }}</label>
+      </div>
+      }
+    </div>
+    <div style="display: flex; align-items: center; justify-content: end">
+      <p-button severity="info" label="Continue" (click)="continue()" />
+    </div>
+    } @else if (step() === 2) {
+    <div>
+      <p style="margin-bottom: 1rem">Are you available today?</p>
+      <div class="field-checkbox" style="display: flex; gap: 1rem; margin-bottom: 1rem">
+        <p-radiobutton
+          inputId="yes"
+          name="availability"
+          value="yes"
+          formControlName="availability"
+        />
+        <label for="yes" class="ml-2">Yes</label>
+      </div>
+      <div class="field-checkbox" style="display: flex; gap: 1rem; margin-bottom: 1rem">
+        <p-radiobutton inputId="no" name="availability" value="no" formControlName="availability" />
+        <label for="no" class="ml-2">No</label>
+      </div>
+    </div>
+    <div style="display: flex; flex-direction: column; margin-bottom: 2rem">
+      <span><b>Location Detetcted:</b></span>
+      <span>{{ myAddress() }}</span>
+    </div>
+    <div style="display: flex; align-items: center; justify-content: end; gap: 1rem">
+      <p-button severity="secondary" label="Back" (click)="step.set(1)" />
+      <p-button severity="info" label="Continue" (click)="onFinish()" />
+    </div>
+    }
+  </p-card>
+</div>

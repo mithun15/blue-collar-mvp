@@ -1,0 +1,19 @@
+<div style="display: flex; flex-direction: column; align-items: center; gap: 1rem">
+  <div style="display: flex; flex-direction: column; justify-content: center; align-items: center">
+    <h1 style="margin-bottom: 0px">All Job Postings</h1>
+    <p>Browse and apply for jobs posted by employers.</p>
+  </div>
+  @for(job of jobs(); track job) {
+  <p-card>
+    <ng-template #title>{{ job.title }}</ng-template>
+    <ng-template #subtitle>{{ job.companyName }}</ng-template>
+    <p>{{ job.description }}</p>
+    <ng-template #footer>
+      <div class="flex gap-4 mt-1" style="display: flex; justify-content: flex-end">
+        <p-button label="View Job" class="w-full" styleClass="w-full" (click)="confirm1($event)" />
+      </div>
+    </ng-template>
+  </p-card>
+  }
+</div>
+<p-confirmdialog />

@@ -1,0 +1,33 @@
+.employer-dashboard {
+    padding-left: 15%;
+    padding-right: 15%;
+    margin-top: 2rem;
+}
+
+.title {
+    font-size: 24px;
+}
+
+p-card {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 20%;
+}
+
+.charts {
+    p-card {
+        width: 30%;
+        flex: 1;
+    }
+
+    margin-bottom: 2rem;
+    display: flex;
+    gap: 1rem;
+}
+
+.number-cards {
+    p-card {
+        flex: 1;
+    }
+}
