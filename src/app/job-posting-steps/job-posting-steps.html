@@ -9,20 +9,45 @@
     <p-step-panels>
       <p-step-panel [value]="1">
         <ng-template #content let-activateCallback="activateCallback">
-          <div class="flex flex-col h-48">
-            <div
-              class="border-2 border-dashed border-surface-200 dark:border-surface-700 rounded bg-surface-50 dark:bg-surface-950 flex-auto flex justify-center items-center font-medium"
-            >
-              <div style="display: flex; margin-top: 1rem">
-                <p-select
-                  [options]="skills"
-                  optionLabel="name"
-                  optionValue="code"
-                  placeholder="Skill required"
-                  class="w-full md:w-56"
-                  formControlName="skillRequired"
-                />
-              </div>
+          <div class="step-1-container">
+            <div style="display: flex; margin-top: 1rem">
+              <p-select
+                [options]="skills"
+                optionLabel="name"
+                optionValue="code"
+                placeholder="Skill required"
+                class="w-full md:w-56"
+              />
+            </div>
+            <div class="workers-count">
+              <div>कितने लोग चाहिए ?</div>
+              @for (n of peopleOptions; track n) {
+                <p-button
+                  [label]="n.label"
+                  [outlined]="selectedPeople !== n.value"
+                  (onClick)="selectedPeople = n.value"
+                ></p-button>
+              }
+            </div>
+            <div>
+              <div>एक की दैनिक मज़दूरी</div>
+              <p-inputnumber
+                [(ngModel)]="wage"
+                [showButtons]="true"
+                buttonLayout="horizontal"
+                inputId="horizontal"
+                spinnerMode="horizontal"
+                [step]="0.25"
+                mode="currency"
+                currency="INR"
+              >
+                <ng-template #incrementbuttonicon>
+                  <span class="pi pi-plus"></span>
+                </ng-template>
+                <ng-template #decrementbuttonicon>
+                  <span class="pi pi-minus"></span>
+                </ng-template>
+              </p-inputnumber>
             </div>
           </div>
           <div class="flex pt-6 justify-end">
@@ -37,11 +62,21 @@
       </p-step-panel>
       <p-step-panel [value]="2">
         <ng-template #content let-activateCallback="activateCallback">
-          <div class="flex flex-col h-48">
-            <div
-              class="border-2 border-dashed border-surface-200 dark:border-surface-700 rounded bg-surface-50 dark:bg-surface-950 flex-auto flex justify-center items-center font-medium"
-            >
-              Content II
+          <div class="step-2-container">
+            <div>
+              <div class="workers-count">
+                <div>कितने लोग चाहिए ?</div>
+                @for (n of timeOptions; track n) {
+                  <div style="margin: 10px">
+                    <p-button
+                      [label]="n.label"
+                      [outlined]="selectedTime !== n.value"
+                      (onClick)="selectedTime = n.value"
+                    ></p-button>
+                  </div>
+                }
+                <p-datepicker [(ngModel)]="date" [showButtonBar]="true" placeholder="तारीख चुने" />
+              </div>
             </div>
           </div>
           <div class="flex pt-6 justify-between">
@@ -63,10 +98,64 @@
       <p-step-panel [value]="3">
         <ng-template #content let-activateCallback="activateCallback">
           <div class="flex flex-col h-48">
-            <div
-              class="border-2 border-dashed border-surface-200 dark:border-surface-700 rounded bg-surface-50 dark:bg-surface-950 flex-auto flex justify-center items-center font-medium"
-            >
-              Content III
+            <div>
+              <div class="time-section">
+                <h3>कितने बजे से</h3>
+
+                <div class="time-box">
+                  <p-inputNumber
+                    [(ngModel)]="fromTime.hour"
+                    [min]="1"
+                    [max]="12"
+                    [useGrouping]="false"
+                    inputStyleClass="time-input"
+                  >
+                  </p-inputNumber>
+
+                  <span class="colon">:</span>
+
+                  <p-inputNumber
+                    [(ngModel)]="fromTime.minute"
+                    [min]="0"
+                    [max]="59"
+                    [useGrouping]="false"
+                    inputStyleClass="time-input"
+                  >
+                  </p-inputNumber>
+                </div>
+
+                <p-selectButton [options]="periods" [(ngModel)]="fromTime.period"> </p-selectButton>
+              </div>
+
+              <hr />
+
+              <div class="time-section">
+                <h3>कितने बजे तक</h3>
+
+                <div class="time-box">
+                  <p-inputNumber
+                    [(ngModel)]="toTime.hour"
+                    [min]="1"
+                    [max]="12"
+                    [useGrouping]="false"
+                    inputStyleClass="time-input"
+                  >
+                  </p-inputNumber>
+
+                  <span class="colon">:</span>
+
+                  <p-inputNumber
+                    [(ngModel)]="toTime.minute"
+                    [min]="0"
+                    [max]="59"
+                    [useGrouping]="false"
+                    inputStyleClass="time-input"
+                  >
+                  </p-inputNumber>
+                </div>
+
+                <p-selectButton [options]="periods" [(ngModel)]="toTime.period"> </p-selectButton>
+              </div>
             </div>
           </div>
           <div class="flex pt-6 justify-start">
@@ -74,8 +163,74 @@
               label="Back"
               icon="pi pi-arrow-left"
               iconPos="right"
+              severity="secondary"
               (onClick)="activateCallback(2)"
             />
+            <p-button
+              label="Next"
+              icon="pi pi-arrow-right"
+              iconPos="right"
+              (onClick)="activateCallback(4)"
+            />
+          </div>
+        </ng-template>
+      </p-step-panel>
+      <p-step-panel [value]="4">
+        <ng-template #content let-activateCallback="activateCallback">
+          <div class="form-section">
+            <h3>संपर्क किससे करना है</h3>
+
+            <input
+              pInputText
+              type="text"
+              placeholder="नाम"
+              [(ngModel)]="form.name"
+              class="full-width"
+            />
+
+            <input
+              pInputText
+              type="tel"
+              placeholder="फ़ोन नंबर"
+              [(ngModel)]="form.phone"
+              class="full-width"
+            />
+
+            <h3 class="mt">कहाँ आना है ?</h3>
+
+            <textarea
+              pInputTextarea
+              rows="4"
+              placeholder="पूरा एड्रेस लिखें"
+              [(ngModel)]="form.address"
+              class="full-width"
+            ></textarea>
+
+            <input
+              pInputText
+              type="text"
+              placeholder="आस पास क्या है/अन्य जानकारी"
+              [(ngModel)]="form.landmark"
+              class="full-width"
+            />
+
+            <p-select
+              [options]="cities"
+              placeholder="शहर का नाम"
+              [(ngModel)]="form.city"
+              class="full-width"
+            ></p-select>
+          </div>
+
+          <div class="flex pt-6 justify-start">
+            <p-button
+              label="Back"
+              icon="pi pi-arrow-left"
+              iconPos="right"
+              severity="secondary"
+              (onClick)="activateCallback(4)"
+            />
+            <p-button label="Next" icon="pi pi-arrow-right" iconPos="right" />
           </div>
         </ng-template>
       </p-step-panel>
