@@ -23,8 +23,8 @@ export class App {
 
   constructor() {
     this.translate.addLangs(['hi', 'en']);
-    this.translate.setFallbackLang('en');
-    this.translate.use('en');
+    this.translate.setFallbackLang('hi');
+    this.translate.use('hi');
   }
 
   onLangChange(event: any) {
