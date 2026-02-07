@@ -1,9 +1,32 @@
 <div class="employer-dashboard">
-  <div style="display: flex; justify-content: space-between; margin-bottom: 2rem">
+  <div
+    style="
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 2rem;
+      flex-direction: column;
+    "
+  >
+    <h1 class="title">Namaste Sangram Singh Ji</h1>
+
+    <div
+      class="headline"
+      style="display: flex; flex-direction: column; justify-content: center; align-items: center"
+    >
+      <h1>{{ 'LABOR_SHORTAGE' | translate }},</h1>
+      <h1 class="headline-emphasis">{{ 'NEVER_AGAIN' | translate }}</h1>
+    </div>
+    <p-button [raised]="true" severity="info" (click)="navigateToJobPostingSteps()">
+      <span class="px-4">{{ 'YOUR_NEEDS' | translate }}</span>
+    </p-button>
+  </div>
+
+  <!-- Dashboard with charts, tables and cards -->
+  <!-- <div style="display: flex; justify-content: space-between; margin-bottom: 2rem">
     <span class="title">Dashboard</span>
     <p-splitbutton label="Post New Job" icon="pi pi-plus" severity="info" [model]="items" />
-  </div>
-  <div class="charts">
+  </div> -->
+  <!-- <div class="charts">
     <p-card>
       <p-chart type="pie" [data]="piedata" [options]="pieoptions" class="w-full md:w-[30rem]" />
     </p-card>
@@ -45,24 +68,6 @@
       </div>
     </p-card>
   </div>
-  <!-- <div style="display: flex; justify-content: space-around">
-    <p-button [raised]="true" severity="info">
-      <i class="pi pi-plus"></i>
-      <span class="px-4">Post New Job</span>
-    </p-button>
-    <p-button [raised]="true" severity="info">
-      <i class="pi pi-search"></i>
-      <span class="px-4">Find Workers Nearby</span>
-    </p-button>
-    <p-button [raised]="true" severity="info">
-      <i class="pi pi-clipboard"></i>
-      <span class="px-4">Mark Attendance</span>
-    </p-button>
-    <p-button [raised]="true" severity="info">
-      <i class="pi pi-indian-rupee"></i>
-      <span class="px-4">Pay Workers</span>
-    </p-button>
-  </div> -->
   <div style="display: flex; gap: 2rem; margin-top: 2rem">
     <div class="card" style="flex: 1">
       <p-table [value]="workers">
@@ -100,5 +105,5 @@
         </ng-template>
       </p-table>
     </div>
-  </div>
+  </div> -->
 </div>

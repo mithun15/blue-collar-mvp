@@ -9,6 +9,7 @@ import { FirstSignUp } from './first-sign-up/first-sign-up';
 import { Landing } from './landing/landing';
 import { EmployerSignUp } from './employer-sign-up/employer-sign-up';
 import { EmployerDashboard } from './employer-dashboard/employer-dashboard';
+import { JobPostingSteps } from './job-posting-steps/job-posting-steps';
 
 export const routes: Routes = [
   {
@@ -50,5 +51,9 @@ export const routes: Routes = [
   {
     path: 'employer-dashboard',
     component: EmployerDashboard,
+  },
+  {
+    path: 'job-posting-steps',
+    component: JobPostingSteps,
   },
 ];

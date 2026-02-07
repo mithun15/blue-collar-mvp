@@ -4,10 +4,6 @@
     margin-top: 2rem;
 }
 
-.title {
-    font-size: 24px;
-}
-
 p-card {
     display: flex;
     justify-content: center;
@@ -30,4 +26,17 @@ p-card {
     p-card {
         flex: 1;
     }
+}
+
+.headline-emphasis {
+    color: #63c5da;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+}
+
+.headline {
+    margin-top: 3rem;
+}
+
+p-button {
+    align-self: center;
 }

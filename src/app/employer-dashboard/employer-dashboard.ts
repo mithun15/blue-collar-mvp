@@ -1,14 +1,16 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, inject, OnInit } from '@angular/core';
 import { ButtonModule } from 'primeng/button';
 import { CardModule } from 'primeng/card';
 import { ChartModule } from 'primeng/chart';
 import { TableModule } from 'primeng/table';
 import { SplitButton } from 'primeng/splitbutton';
 import { MenuItem } from 'primeng/api';
+import { TranslateModule } from '@ngx-translate/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-employer-dashboard',
-  imports: [CardModule, ButtonModule, ChartModule, TableModule, SplitButton],
+  imports: [CardModule, ButtonModule, ChartModule, TableModule, SplitButton, TranslateModule],
   templateUrl: './employer-dashboard.html',
   styleUrl: './employer-dashboard.scss',
 })
@@ -20,6 +22,8 @@ export class EmployerDashboard implements OnInit {
   items: MenuItem[] = [];
 
   workers: any = [];
+
+  private _router = inject(Router);
 
   ngOnInit(): void {
     const documentStyle = getComputedStyle(document.documentElement);
@@ -164,5 +168,9 @@ export class EmployerDashboard implements OnInit {
       },
       { label: 'Pay Workers', icon: 'pi pi-indian-rupee' },
     ];
+  }
+
+  public navigateToJobPostingSteps(): void {
+    this._router.navigate(['/job-posting-steps']);
   }
 }
