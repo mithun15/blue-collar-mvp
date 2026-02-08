@@ -1,0 +1,72 @@
+@let jobPostSummary = jobPostingForm?.value;
+<div class="summary-container">
+  <!-- लोग -->
+  <div class="row">
+    <div class="title">लोग</div>
+    <button class="edit" (click)="edit('people')"><i class="pi pi-pencil"></i> बदलें</button>
+  </div>
+  <div class="value">{{ jobPostSummary?.noOfPeople }}</div>
+
+  <hr />
+
+  <!-- मजदूरी -->
+  <div class="row">
+    <div class="title">एक की दैनिक मजदूरी</div>
+    <button class="edit" (click)="edit('wage')"><i class="pi pi-pencil"></i> बदलें</button>
+  </div>
+  <div class="value">₹{{ jobPostSummary?.wagePerPerson }}</div>
+
+  <hr />
+
+  <!-- तारीख -->
+  <div class="row">
+    <div class="title">तारीख</div>
+    <button class="edit" (click)="edit('date')"><i class="pi pi-pencil"></i> बदलें</button>
+  </div>
+  <div class="value">{{ jobPostSummary?.date | date: 'dd/MM/yy' }}</div>
+
+  <hr />
+
+  <!-- समय -->
+  <div class="row">
+    <div class="title">समय</div>
+    <button class="edit" (click)="edit('time')"><i class="pi pi-pencil"></i> बदलें</button>
+  </div>
+  <div class="value">
+    {{ jobPostSummary?.fromTime | date: 'shortTime' }} -
+    {{ jobPostSummary?.toTime | date: 'shortTime' }}
+  </div>
+
+  <hr />
+
+  <!-- संपर्क -->
+  <div class="row">
+    <div class="title">संपर्क</div>
+    <button class="edit" (click)="edit('contact')"><i class="pi pi-pencil"></i> बदलें</button>
+  </div>
+  <div class="value two-col">
+    <span>{{ jobPostSummary?.contact?.name }}</span>
+    <span>{{ jobPostSummary?.contact?.phone }}</span>
+  </div>
+
+  <hr />
+
+  <!-- जगह -->
+  <div class="row">
+    <div class="title">जगह</div>
+    <button class="edit" (click)="edit('address')"><i class="pi pi-pencil"></i> बदलें</button>
+  </div>
+  <div class="value">{{ jobPostSummary?.contact?.address }}</div>
+
+  <hr />
+
+  <!-- Terms -->
+  <div class="terms">
+    <p-checkbox [(ngModel)]="accepted" binary="true"></p-checkbox>
+    <span>मुझे नियम व शर्तें मंजूर है</span>
+  </div>
+
+  <!-- Submit -->
+  <p-button label="समाप्त करें" class="submit-btn" [disabled]="!accepted" (onClick)="submit()">
+  </p-button>
+</div>

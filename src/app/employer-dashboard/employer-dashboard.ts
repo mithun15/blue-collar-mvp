@@ -171,6 +171,6 @@ export class EmployerDashboard implements OnInit {
   }
 
   public navigateToJobPostingSteps(): void {
-    this._router.navigate(['/job-posting-steps']);
+    this._router.navigate(['/job-posting/job-posting-steps']);
   }
 }

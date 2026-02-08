@@ -1,4 +1,4 @@
-<div class="card flex justify-center">
+<div class="card flex justify-center" [formGroup]="jobPostingForm">
   <p-stepper [value]="1" class="basis-[50rem]">
     <p-step-list>
       <p-step [value]="1"></p-step>
@@ -17,6 +17,7 @@
                 optionValue="code"
                 placeholder="Skill required"
                 class="w-full md:w-56"
+                formControlName="skill"
               />
             </div>
             <div class="workers-count">
@@ -25,14 +26,15 @@
                 <p-button
                   [label]="n.label"
                   [outlined]="selectedPeople !== n.value"
-                  (onClick)="selectedPeople = n.value"
+                  (onClick)="peopleSelected(n)"
                 ></p-button>
               }
+              <!-- <p-selectButton [options]="peopleOptions" [(ngModel)]="selectedPeople"> -->
+              <!-- </p-selectButton> -->
             </div>
             <div>
               <div>एक की दैनिक मज़दूरी</div>
               <p-inputnumber
-                [(ngModel)]="wage"
                 [showButtons]="true"
                 buttonLayout="horizontal"
                 inputId="horizontal"
@@ -40,6 +42,7 @@
                 [step]="0.25"
                 mode="currency"
                 currency="INR"
+                formControlName="wagePerPerson"
               >
                 <ng-template #incrementbuttonicon>
                   <span class="pi pi-plus"></span>
@@ -52,10 +55,10 @@
           </div>
           <div class="flex pt-6 justify-end">
             <p-button
-              label="Next"
+              label="अगला स्टेप"
               icon="pi pi-arrow-right"
               iconPos="right"
-              (onClick)="activateCallback(2)"
+              (onClick)="activateCallback(2); print()"
             />
           </div>
         </ng-template>
@@ -65,7 +68,7 @@
           <div class="step-2-container">
             <div>
               <div class="workers-count">
-                <div>कितने लोग चाहिए ?</div>
+                <div>कब चाहिए ?</div>
                 @for (n of timeOptions; track n) {
                   <div style="margin: 10px">
                     <p-button
@@ -75,22 +78,25 @@
                     ></p-button>
                   </div>
                 }
-                <p-datepicker [(ngModel)]="date" [showButtonBar]="true" placeholder="तारीख चुने" />
+                <p-datepicker
+                  [showButtonBar]="true"
+                  placeholder="तारीख चुने"
+                  formControlName="date"
+                />
               </div>
             </div>
           </div>
           <div class="flex pt-6 justify-between">
             <p-button
-              label="Back"
               severity="secondary"
               icon="pi pi-arrow-left"
               (onClick)="activateCallback(1)"
             />
             <p-button
-              label="Next"
+              label="अगला स्टेप"
               icon="pi pi-arrow-right"
               iconPos="right"
-              (onClick)="activateCallback(3)"
+              (onClick)="activateCallback(3); print()"
             />
           </div>
         </ng-template>
@@ -103,8 +109,7 @@
                 <h3>कितने बजे से</h3>
 
                 <div class="time-box">
-                  <p-inputNumber
-                    [(ngModel)]="fromTime.hour"
+                  <!-- <p-inputNumber
                     [min]="1"
                     [max]="12"
                     [useGrouping]="false"
@@ -115,16 +120,21 @@
                   <span class="colon">:</span>
 
                   <p-inputNumber
-                    [(ngModel)]="fromTime.minute"
                     [min]="0"
                     [max]="59"
                     [useGrouping]="false"
                     inputStyleClass="time-input"
                   >
-                  </p-inputNumber>
+                  </p-inputNumber> -->
+                  <p-datepicker
+                    [showButtonBar]="true"
+                    placeholder="समय चुने"
+                    formControlName="fromTime"
+                    [timeOnly]="true"
+                  />
                 </div>
 
-                <p-selectButton [options]="periods" [(ngModel)]="fromTime.period"> </p-selectButton>
+                <p-selectButton [options]="periods"> </p-selectButton>
               </div>
 
               <hr />
@@ -133,8 +143,7 @@
                 <h3>कितने बजे तक</h3>
 
                 <div class="time-box">
-                  <p-inputNumber
-                    [(ngModel)]="toTime.hour"
+                  <!-- <p-inputNumber
                     [min]="1"
                     [max]="12"
                     [useGrouping]="false"
@@ -145,55 +154,59 @@
                   <span class="colon">:</span>
 
                   <p-inputNumber
-                    [(ngModel)]="toTime.minute"
                     [min]="0"
                     [max]="59"
                     [useGrouping]="false"
                     inputStyleClass="time-input"
                   >
-                  </p-inputNumber>
+                  </p-inputNumber> -->
+                  <p-datepicker
+                    [showButtonBar]="true"
+                    placeholder="समय चुने"
+                    formControlName="toTime"
+                    [timeOnly]="true"
+                  />
                 </div>
 
-                <p-selectButton [options]="periods" [(ngModel)]="toTime.period"> </p-selectButton>
+                <p-selectButton [options]="periods"> </p-selectButton>
               </div>
             </div>
           </div>
           <div class="flex pt-6 justify-start">
             <p-button
-              label="Back"
               icon="pi pi-arrow-left"
               iconPos="right"
               severity="secondary"
               (onClick)="activateCallback(2)"
             />
             <p-button
-              label="Next"
+              label="अगला स्टेप"
               icon="pi pi-arrow-right"
               iconPos="right"
-              (onClick)="activateCallback(4)"
+              (onClick)="activateCallback(4); print()"
             />
           </div>
         </ng-template>
       </p-step-panel>
       <p-step-panel [value]="4">
         <ng-template #content let-activateCallback="activateCallback">
-          <div class="form-section">
+          <div class="form-section" formGroupName="contact">
             <h3>संपर्क किससे करना है</h3>
 
             <input
               pInputText
               type="text"
               placeholder="नाम"
-              [(ngModel)]="form.name"
               class="full-width"
+              formControlName="name"
             />
 
             <input
               pInputText
               type="tel"
               placeholder="फ़ोन नंबर"
-              [(ngModel)]="form.phone"
               class="full-width"
+              formControlName="phone"
             />
 
             <h3 class="mt">कहाँ आना है ?</h3>
@@ -202,35 +215,39 @@
               pInputTextarea
               rows="4"
               placeholder="पूरा एड्रेस लिखें"
-              [(ngModel)]="form.address"
               class="full-width"
+              formControlName="address"
             ></textarea>
 
             <input
               pInputText
               type="text"
               placeholder="आस पास क्या है/अन्य जानकारी"
-              [(ngModel)]="form.landmark"
               class="full-width"
+              formControlName="landmark"
             />
 
             <p-select
               [options]="cities"
               placeholder="शहर का नाम"
-              [(ngModel)]="form.city"
               class="full-width"
+              formControlName="city"
             ></p-select>
           </div>
 
           <div class="flex pt-6 justify-start">
             <p-button
-              label="Back"
               icon="pi pi-arrow-left"
               iconPos="right"
               severity="secondary"
               (onClick)="activateCallback(3)"
             />
-            <p-button label="Next" icon="pi pi-arrow-right" iconPos="right" />
+            <p-button
+              label="पुष्टि करें"
+              icon="pi pi-arrow-right"
+              iconPos="right"
+              (click)="confirm()"
+            />
           </div>
         </ng-template>
       </p-step-panel>

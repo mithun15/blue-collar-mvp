@@ -1,0 +1,56 @@
+.summary-container {
+  max-width: 420px;
+  margin: auto;
+  font-family: Arial, sans-serif;
+}
+
+.row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.title {
+  font-weight: 600;
+  font-size: 15px;
+}
+
+.edit {
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 13px;
+}
+
+.edit i {
+  font-size: 12px;
+  margin-right: 4px;
+}
+
+.value {
+  margin: 6px 0 10px;
+  font-size: 14px;
+}
+
+.two-col {
+  display: flex;
+  justify-content: space-between;
+}
+
+hr {
+  border: none;
+  border-top: 1px solid #000;
+  margin: 10px 0;
+}
+
+.terms {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin: 16px 0;
+}
+
+.submit-btn {
+  width: 100%;
+  margin-top: 10px;
+}

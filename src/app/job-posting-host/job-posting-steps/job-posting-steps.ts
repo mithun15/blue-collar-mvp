@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, inject, OnInit } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ButtonModule } from 'primeng/button';
 import { InputNumberModule } from 'primeng/inputnumber';
@@ -6,6 +6,8 @@ import { SelectModule } from 'primeng/select';
 import { StepperModule } from 'primeng/stepper';
 import { DatePickerModule } from 'primeng/datepicker';
 import { SelectButtonModule } from 'primeng/selectbutton';
+import { Router } from '@angular/router';
+import { JobPosting } from '../job-posting';
 
 interface Skill {
   name: string;
@@ -31,8 +33,6 @@ export class JobPostingSteps implements OnInit {
   public skills: Skill[] | undefined;
   public selectedPeople: any;
   public selectedTime: any;
-  public date: any;
-  public wage: any;
   peopleOptions = [
     { label: '1', value: 1 },
     { label: '2', value: 2 },
@@ -57,19 +57,11 @@ export class JobPostingSteps implements OnInit {
   toTime = { hour: 6, minute: 0, period: 'शाम' };
 
   periods = [
-    { label: 'सुबह', value: 'सुबह' },
-    { label: 'दोपहर', value: 'दोपहर' },
-    { label: 'शाम', value: 'शाम' },
-    { label: 'रात', value: 'रात' },
+    { label: 'सुबह', value: 'morning' },
+    { label: 'दोपहर', value: 'afternoon' },
+    { label: 'शाम', value: 'evening' },
+    { label: 'रात', value: 'night' },
   ];
-
-  form = {
-    name: '',
-    phone: '',
-    address: '',
-    landmark: '',
-    city: null,
-  };
 
   cities = [
     { label: 'दिल्ली', value: 'Delhi' },
@@ -78,6 +70,11 @@ export class JobPostingSteps implements OnInit {
     { label: 'पुणे', value: 'Pune' },
   ];
 
+  private _router = inject(Router);
+  private _jobPosting = inject(JobPosting);
+
+  public jobPostingForm = this._jobPosting.jobPostingForm;
+
   ngOnInit(): void {
     this.skills = [
       { name: 'Worker', code: 'WOR' },
@@ -85,5 +82,21 @@ export class JobPostingSteps implements OnInit {
       { name: 'Plumber', code: 'PLU' },
       { name: 'Electrician', code: 'ELE' },
     ];
+  }
+
+  confirm() {
+    // Handle confirmation logic here
+    this._router.navigate(['/job-posting/job-summary']);
+  }
+
+  peopleSelected(n: any) {
+    this.selectedPeople = n.value;
+    this.jobPostingForm.patchValue({
+      noOfPeople: n.value,
+    });
+  }
+
+  print() {
+    console.log(this.jobPostingForm.value);
   }
 }

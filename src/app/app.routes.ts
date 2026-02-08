@@ -2,14 +2,15 @@ import { Routes } from '@angular/router';
 import { Login } from './login/login';
 import { VerifyOtp } from './verify-otp/verify-otp';
 import { WorkerDashboard } from './worker-dashboard/worker-dashboard';
-import { JobPosting } from './job-posting/job-posting';
 import { JobsList } from './jobs-list/jobs-list';
 import { WorkerSignUp } from './worker-sign-up/worker-sign-up';
 import { FirstSignUp } from './first-sign-up/first-sign-up';
 import { Landing } from './landing/landing';
 import { EmployerSignUp } from './employer-sign-up/employer-sign-up';
 import { EmployerDashboard } from './employer-dashboard/employer-dashboard';
-import { JobPostingSteps } from './job-posting-steps/job-posting-steps';
+import { JobPostingSteps } from './job-posting-host/job-posting-steps/job-posting-steps';
+import { JobSummary } from './job-posting-host/job-summary/job-summary';
+import { JobPostingHost } from './job-posting-host/job-posting-host';
 
 export const routes: Routes = [
   {
@@ -28,10 +29,10 @@ export const routes: Routes = [
     path: 'worker-dashboard',
     component: WorkerDashboard,
   },
-  {
-    path: 'job-posting',
-    component: JobPosting,
-  },
+  // {
+  //   path: 'job-posting',
+  //   component: JobPosting,
+  // },
   {
     path: 'jobs-list',
     component: JobsList,
@@ -53,7 +54,22 @@ export const routes: Routes = [
     component: EmployerDashboard,
   },
   {
-    path: 'job-posting-steps',
-    component: JobPostingSteps,
+    path: 'job-posting',
+    component: JobPostingHost,
+    children: [
+      {
+        path: '',
+        redirectTo: 'job-posting-steps',
+        pathMatch: 'full',
+      },
+      {
+        path: 'job-posting-steps',
+        component: JobPostingSteps,
+      },
+      {
+        path: 'job-summary',
+        component: JobSummary,
+      },
+    ],
   },
 ];
