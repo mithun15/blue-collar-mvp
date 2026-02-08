@@ -14,7 +14,7 @@ import { ConfirmationService, MessageService } from 'primeng/api';
   providers: [ConfirmationService, MessageService],
 })
 export class JobsList implements OnInit {
-  public jobs = signal<JobPostingModel[]>([]);
+  public jobs = signal<any[]>([]);
   private _jobsPostingService = inject(JobPostingService);
 
   private _confirmationService = inject(ConfirmationService);
