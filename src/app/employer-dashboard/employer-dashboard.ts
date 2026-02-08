@@ -1,18 +1,33 @@
-import { Component, inject, OnInit } from '@angular/core';
+import { Component, inject, OnInit, signal } from '@angular/core';
 import { ButtonModule } from 'primeng/button';
 import { CardModule } from 'primeng/card';
 import { ChartModule } from 'primeng/chart';
 import { TableModule } from 'primeng/table';
 import { SplitButton } from 'primeng/splitbutton';
-import { MenuItem } from 'primeng/api';
+import { ConfirmationService, MenuItem, MessageService } from 'primeng/api';
 import { TranslateModule } from '@ngx-translate/core';
 import { Router } from '@angular/router';
+import { JobCard } from '../job-card/job-card';
+import { JobPostingModel } from '../job-posting/job-posting.model';
+import { JobPostingService } from '../services/job-posting.service';
+import { ConfirmDialogModule } from 'primeng/confirmdialog';
+import { switchMap } from 'rxjs';
 
 @Component({
   selector: 'app-employer-dashboard',
-  imports: [CardModule, ButtonModule, ChartModule, TableModule, SplitButton, TranslateModule],
+  imports: [
+    CardModule,
+    ButtonModule,
+    ChartModule,
+    TableModule,
+    SplitButton,
+    TranslateModule,
+    JobCard,
+    ConfirmDialogModule,
+  ],
   templateUrl: './employer-dashboard.html',
   styleUrl: './employer-dashboard.scss',
+  providers: [ConfirmationService, MessageService],
 })
 export class EmployerDashboard implements OnInit {
   piedata: any;
@@ -22,10 +37,19 @@ export class EmployerDashboard implements OnInit {
   items: MenuItem[] = [];
 
   workers: any = [];
+  public jobs = signal<JobPostingModel[]>([]);
 
   private _router = inject(Router);
+  private _jobsPostingService = inject(JobPostingService);
+  private _confirmationService = inject(ConfirmationService);
+  private _messageService = inject(MessageService);
 
   ngOnInit(): void {
+    this._jobsPostingService.getAllJobPostings().subscribe((res: any) => {
+      this.jobs.set(res);
+      console.log(this.jobs());
+    });
+
     const documentStyle = getComputedStyle(document.documentElement);
     const textColor = documentStyle.getPropertyValue('--text-color');
 
@@ -172,5 +196,44 @@ export class EmployerDashboard implements OnInit {
 
   public navigateToJobPostingSteps(): void {
     this._router.navigate(['/job-posting/job-posting-steps']);
+  }
+
+  public onDelete(event: Event, id: string) {
+    console.log(event);
+    this._confirmationService.confirm({
+      target: event.target as EventTarget,
+      message: 'Are you sure you want to delete this job posting?',
+      header: 'Delete',
+      closable: true,
+      closeOnEscape: true,
+      rejectButtonProps: {
+        label: 'Close',
+        severity: 'secondary',
+      },
+      acceptButtonProps: {
+        label: 'Delete',
+        severity: 'info',
+      },
+      accept: () => {
+        this._jobsPostingService
+          .deleteJobPosting(id)
+          .pipe(switchMap(() => this._jobsPostingService.getAllJobPostings()))
+          .subscribe((res: any) => {
+            this.jobs.set(res);
+            this._messageService.add({
+              severity: 'success',
+              summary: 'Deleted',
+              detail: 'Job posting has been deleted',
+              life: 3000,
+            });
+          });
+      },
+      reject: () => {},
+    });
+  }
+
+  public onEdit(event: Event) {
+    console.log(event);
+    // this._router.navigate([`/job-posting/job-posting-steps`]);
   }
 }

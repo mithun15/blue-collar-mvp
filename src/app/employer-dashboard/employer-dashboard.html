@@ -20,6 +20,16 @@
       <span class="px-4">{{ 'YOUR_NEEDS' | translate }}</span>
     </p-button>
   </div>
+  <div class="job-cards-container">
+    @for (job of jobs(); track job) {
+      <app-job-card
+        [job]="job"
+        (edit)="onEdit($event)"
+        (delete)="onDelete($event, job.id)"
+      ></app-job-card>
+    }
+  </div>
+  <p-confirmdialog />
 
   <!-- Dashboard with charts, tables and cards -->
   <!-- <div style="display: flex; justify-content: space-between; margin-bottom: 2rem">

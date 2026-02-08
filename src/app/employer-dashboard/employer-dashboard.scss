@@ -40,3 +40,7 @@ p-card {
 p-button {
     align-self: center;
 }
+
+:host ::ng-deep app-job-card p-card {
+    margin-bottom: 1rem;
+}

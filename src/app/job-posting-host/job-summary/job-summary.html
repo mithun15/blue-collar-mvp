@@ -3,7 +3,7 @@
   <!-- लोग -->
   <div class="row">
     <div class="title">लोग</div>
-    <button class="edit" (click)="edit('people')"><i class="pi pi-pencil"></i> बदलें</button>
+    <button class="edit" (click)="edit()"><i class="pi pi-pencil"></i> बदलें</button>
   </div>
   <div class="value">{{ jobPostSummary?.noOfPeople }}</div>
 
@@ -12,7 +12,7 @@
   <!-- मजदूरी -->
   <div class="row">
     <div class="title">एक की दैनिक मजदूरी</div>
-    <button class="edit" (click)="edit('wage')"><i class="pi pi-pencil"></i> बदलें</button>
+    <button class="edit" (click)="edit()"><i class="pi pi-pencil"></i> बदलें</button>
   </div>
   <div class="value">₹{{ jobPostSummary?.wagePerPerson }}</div>
 
@@ -21,7 +21,7 @@
   <!-- तारीख -->
   <div class="row">
     <div class="title">तारीख</div>
-    <button class="edit" (click)="edit('date')"><i class="pi pi-pencil"></i> बदलें</button>
+    <button class="edit" (click)="edit()"><i class="pi pi-pencil"></i> बदलें</button>
   </div>
   <div class="value">{{ jobPostSummary?.date | date: 'dd/MM/yy' }}</div>
 
@@ -30,7 +30,7 @@
   <!-- समय -->
   <div class="row">
     <div class="title">समय</div>
-    <button class="edit" (click)="edit('time')"><i class="pi pi-pencil"></i> बदलें</button>
+    <button class="edit" (click)="edit()"><i class="pi pi-pencil"></i> बदलें</button>
   </div>
   <div class="value">
     {{ jobPostSummary?.fromTime | date: 'shortTime' }} -
@@ -42,7 +42,7 @@
   <!-- संपर्क -->
   <div class="row">
     <div class="title">संपर्क</div>
-    <button class="edit" (click)="edit('contact')"><i class="pi pi-pencil"></i> बदलें</button>
+    <button class="edit" (click)="edit()"><i class="pi pi-pencil"></i> बदलें</button>
   </div>
   <div class="value two-col">
     <span>{{ jobPostSummary?.contact?.name }}</span>
@@ -54,7 +54,7 @@
   <!-- जगह -->
   <div class="row">
     <div class="title">जगह</div>
-    <button class="edit" (click)="edit('address')"><i class="pi pi-pencil"></i> बदलें</button>
+    <button class="edit" (click)="edit()"><i class="pi pi-pencil"></i> बदलें</button>
   </div>
   <div class="value">{{ jobPostSummary?.contact?.address }}</div>
 

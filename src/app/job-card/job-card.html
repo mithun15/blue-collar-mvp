@@ -1,0 +1,27 @@
+<p-card>
+  <div class="header">
+    <div class="title">{{ job?.noOfPeople }} लोग</div>
+
+    <div class="actions">
+      <p-button icon="pi pi-trash" class="icon-btn" (onClick)="onDelete($event)"> </p-button>
+
+      <p-button
+        icon="pi pi-pencil"
+        class="icon-btn"
+        (onClick)="onEdit($event)"
+        [disabled]="true"
+        pTooltip="Not functional: Work in-progress"
+      >
+      </p-button>
+    </div>
+  </div>
+
+  <div class="row">
+    <span>{{ job?.date | date: 'dd/MM/yy' }}</span>
+    <span>{{ job?.fromTime | date: 'shortTime' }} - {{ job?.toTime | date: 'shortTime' }}</span>
+  </div>
+
+  <div class="address">
+    {{ job?.contact?.address }}
+  </div>
+</p-card>

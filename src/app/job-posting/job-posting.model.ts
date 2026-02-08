@@ -1,10 +1,16 @@
 export interface JobPostingModel {
-  title: string;
-  numberOfWorkers: number;
-  skillRequired: string;
-  companyName: string;
-  location: string;
-  description: string;
-  startDate: string;
-  endDate: string;
+  id: string;
+  noOfPeople: number;
+  skill: string;
+  wagePerPerson: number;
+  date: string;
+  fromTime: string;
+  toTime: string;
+  contact: {
+    name: string;
+    phone: string;
+    address: string;
+    landmark: string;
+    city: string;
+  };
 }
