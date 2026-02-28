@@ -1,69 +1,101 @@
 @let jobPostSummary = jobPostingForm?.value;
 <div class="summary-container">
   <!-- लोग -->
-  <div class="row">
-    <div class="title">लोग</div>
-    <button class="edit" (click)="edit()"><i class="pi pi-pencil"></i> बदलें</button>
+  <div class="summary-row">
+    <div class="summary-header">
+      <div class="summary-title">लोग</div>
+      <button class="edit-btn" (click)="edit()" title="Edit">
+        <i class="pi pi-pencil"></i>
+        <span class="edit-label">बदलें</span>
+      </button>
+    </div>
+    <div class="summary-value">{{ jobPostSummary?.noOfPeople }}</div>
   </div>
-  <div class="value">{{ jobPostSummary?.noOfPeople }}</div>
 
-  <hr />
+  <hr class="summary-divider" />
 
   <!-- मजदूरी -->
-  <div class="row">
-    <div class="title">एक की दैनिक मजदूरी</div>
-    <button class="edit" (click)="edit()"><i class="pi pi-pencil"></i> बदलें</button>
+  <div class="summary-row">
+    <div class="summary-header">
+      <div class="summary-title">एक की दैनिक मजदूरी</div>
+      <button class="edit-btn" (click)="edit()" title="Edit">
+        <i class="pi pi-pencil"></i>
+        <span class="edit-label">बदलें</span>
+      </button>
+    </div>
+    <div class="summary-value">₹{{ jobPostSummary?.wagePerPerson }}</div>
   </div>
-  <div class="value">₹{{ jobPostSummary?.wagePerPerson }}</div>
 
-  <hr />
+  <hr class="summary-divider" />
 
   <!-- तारीख -->
-  <div class="row">
-    <div class="title">तारीख</div>
-    <button class="edit" (click)="edit()"><i class="pi pi-pencil"></i> बदलें</button>
+  <div class="summary-row">
+    <div class="summary-header">
+      <div class="summary-title">तारीख</div>
+      <button class="edit-btn" (click)="edit()" title="Edit">
+        <i class="pi pi-pencil"></i>
+        <span class="edit-label">बदलें</span>
+      </button>
+    </div>
+    <div class="summary-value">{{ jobPostSummary?.date | date: 'dd/MM/yy' }}</div>
   </div>
-  <div class="value">{{ jobPostSummary?.date | date: 'dd/MM/yy' }}</div>
 
-  <hr />
+  <hr class="summary-divider" />
 
   <!-- समय -->
-  <div class="row">
-    <div class="title">समय</div>
-    <button class="edit" (click)="edit()"><i class="pi pi-pencil"></i> बदलें</button>
-  </div>
-  <div class="value">
-    {{ jobPostSummary?.fromTime | date: 'shortTime' }} -
-    {{ jobPostSummary?.toTime | date: 'shortTime' }}
+  <div class="summary-row">
+    <div class="summary-header">
+      <div class="summary-title">समय</div>
+      <button class="edit-btn" (click)="edit()" title="Edit">
+        <i class="pi pi-pencil"></i>
+        <span class="edit-label">बदलें</span>
+      </button>
+    </div>
+    <div class="summary-value">
+      {{ jobPostSummary?.fromTime | date: 'shortTime' }} -
+      {{ jobPostSummary?.toTime | date: 'shortTime' }}
+    </div>
   </div>
 
-  <hr />
+  <hr class="summary-divider" />
 
   <!-- संपर्क -->
-  <div class="row">
-    <div class="title">संपर्क</div>
-    <button class="edit" (click)="edit()"><i class="pi pi-pencil"></i> बदलें</button>
-  </div>
-  <div class="value two-col">
-    <span>{{ jobPostSummary?.contact?.name }}</span>
-    <span>{{ jobPostSummary?.contact?.phone }}</span>
+  <div class="summary-row">
+    <div class="summary-header">
+      <div class="summary-title">संपर्क</div>
+      <button class="edit-btn" (click)="edit()" title="Edit">
+        <i class="pi pi-pencil"></i>
+        <span class="edit-label">बदलें</span>
+      </button>
+    </div>
+    <div class="summary-value contact-info">
+      <span class="contact-name">{{ jobPostSummary?.contact?.name }}</span>
+      <span class="contact-phone">{{ jobPostSummary?.contact?.phone }}</span>
+    </div>
   </div>
 
-  <hr />
+  <hr class="summary-divider" />
 
   <!-- जगह -->
-  <div class="row">
-    <div class="title">जगह</div>
-    <button class="edit" (click)="edit()"><i class="pi pi-pencil"></i> बदलें</button>
+  <div class="summary-row">
+    <div class="summary-header">
+      <div class="summary-title">जगह</div>
+      <button class="edit-btn" (click)="edit()" title="Edit">
+        <i class="pi pi-pencil"></i>
+        <span class="edit-label">बदलें</span>
+      </button>
+    </div>
+    <div class="summary-value">{{ jobPostSummary?.contact?.address }}</div>
   </div>
-  <div class="value">{{ jobPostSummary?.contact?.address }}</div>
 
-  <hr />
+  <hr class="summary-divider" />
 
   <!-- Terms -->
-  <div class="terms">
-    <p-checkbox [(ngModel)]="accepted" binary="true"></p-checkbox>
-    <span>मुझे नियम व शर्तें मंजूर है</span>
+  <div class="summary-terms">
+    <div class="terms-checkbox">
+      <p-checkbox [(ngModel)]="accepted" binary="true"></p-checkbox>
+    </div>
+    <span class="terms-text">मुझे नियम व शर्तें मंजूर है</span>
   </div>
 
   <!-- Submit -->

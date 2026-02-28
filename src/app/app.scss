@@ -46,22 +46,47 @@ p-menubar {
 
 // ...existing code...
 
-// Router outlet
+// Router outlet with spacing for fixed menubar
 router-outlet + p-divider {
-  margin-top: calc(3rem + 60px); // 60px approximate menubar height
+  display: block;
+  margin-top: 3rem;
+  padding-top: 0;
 }
 
 // Ensure content accounts for fixed menubar
 :host ::ng-deep {
   app-root {
-    display: flex;
-    flex-direction: column;
-    min-height: 100vh;
+    display: block;
   }
 
   router-outlet {
-    margin-top: 60px;
-    flex: 1;
+    display: block;
+    margin-top: 80px;
+
+    @media (max-width: 768px) {
+      margin-top: 90px;
+    }
+
+    @media (max-width: 480px) {
+      margin-top: 100px;
+    }
+  }
+
+  // Apply spacing to all direct children of routed components
+  app-landing,
+  app-login,
+  app-verify-otp,
+  app-worker-dashboard,
+  app-jobs-list,
+  app-first-sign-up,
+  app-worker-sign-up,
+  app-employer-sign-up,
+  app-employer-dashboard,
+  app-job-posting-host,
+  app-top-bar-widget,
+  app-job-posting {
+    display: block;
+    margin-top: 0;
   }
 }
 

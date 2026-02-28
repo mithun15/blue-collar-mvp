@@ -14,7 +14,6 @@ $background-white: #ffffff;
 
 .employer-dashboard {
   padding: 2rem 15%;
-  margin-top: 2rem;
   max-width: 1400px;
   margin-left: auto;
   margin-right: auto;
@@ -25,12 +24,10 @@ $background-white: #ffffff;
 
   @media (max-width: 768px) {
     padding: 1.5rem 5%;
-    margin-top: 1rem;
   }
 
   @media (max-width: 480px) {
     padding: 1rem 3%;
-    margin-top: 0.5rem;
   }
 }
 
