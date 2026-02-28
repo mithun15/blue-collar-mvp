@@ -1,41 +1,351 @@
+// ===== COLOR VARIABLES =====
+$primary-color: #0ea5e9; // Cyan
+$primary-dark: #0284c7;
+$primary-light: #06b6d4;
+$accent-color: #db073d; // Red
+$text-dark: #1f2937;
+$text-light: #6b7280;
+$border-color: #e5e7eb;
+$background-light: #f9fafb;
+$background-white: #ffffff;
+
+// ===== EMPLOYER SIGN-UP RESPONSIVE =====
+
 .employer-sign-up {
-        padding-left: 15%;
-    padding-right: 15%;
+  padding: 2rem 15%;
+  margin-top: 2rem;
+
+  @media (max-width: 1024px) {
+    padding: 2rem 8%;
+  }
+
+  @media (max-width: 768px) {
+    padding: 1.5rem 5%;
+    margin-top: 1rem;
+  }
+
+  @media (max-width: 480px) {
+    padding: 1rem 3%;
+    margin-top: 0.5rem;
+  }
 }
 
-:host::ng-deep p-button {
-    width: 100%;
-    button {
-        width: 100%;
-    }
+.content-wrapper {
+  display: flex;
+  align-items: center;
+  gap: 3rem;
+  max-width: 1200px;
+  margin: 0 auto;
+
+  @media (max-width: 1024px) {
+    gap: 2rem;
+  }
+
+  @media (max-width: 768px) {
+    flex-direction: column;
+    gap: 2rem;
+  }
+
+  @media (max-width: 480px) {
+    gap: 1.5rem;
+  }
 }
 
-p-card {
+// Headline Section
+.headline-section {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  @media (max-width: 768px) {
     flex: 1;
-}
-
-.landing-container {
-    padding-left: 15%;
-    padding-right: 15%;
-}
-
-h1 {
-    font-size: 60px;
-    margin: 0px;
-}
-
-.headline-emphasis {
-    color: #db073d;
-    font-family: Georgia, 'Times New Roman', Times, serif;
-    font-weight: 500;
-    font-style: italic;
+    width: 100%;
+    text-align: center;
+  }
 }
 
 .headline {
-    margin-top: 3rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+
+  h1 {
+    font-size: 2.75rem;
+    margin: 0;
+    color: $text-dark;
+    font-weight: 700;
+    line-height: 1.2;
+
+    @media (max-width: 1024px) {
+      font-size: 2.25rem;
+    }
+
+    @media (max-width: 768px) {
+      font-size: 2rem;
+    }
+
+    @media (max-width: 480px) {
+      font-size: 1.5rem;
+    }
+  }
+}
+
+.headline-emphasis {
+  color: $accent-color;
+  font-family: Georgia, 'Times New Roman', Times, serif;
+  font-weight: 500;
+  font-style: italic;
+  background: linear-gradient(135deg, $accent-color 0%, #ff1744 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+// Form Section
+.form-section {
+  flex: 1;
+  width: 100%;
+  max-width: 500px;
+
+  @media (max-width: 768px) {
+    flex: 1;
+    max-width: 100%;
+  }
+}
+
+.signup-card {
+  ::ng-deep {
+    .p-card {
+      border-radius: 12px;
+      border: 1px solid $border-color;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+      background: $background-white;
+
+      @media (max-width: 480px) {
+        border-radius: 8px;
+      }
+
+      .p-card-content {
+        padding: 2rem;
+
+        @media (max-width: 768px) {
+          padding: 1.5rem;
+        }
+
+        @media (max-width: 480px) {
+          padding: 1rem;
+        }
+      }
+    }
+
+    p-divider {
+      margin: 1.5rem 0 !important;
+
+      @media (max-width: 480px) {
+        margin: 1rem 0 !important;
+      }
+    }
+
+    p-floatlabel {
+      width: 100%;
+
+      input {
+        width: 100%;
+        border-radius: 8px;
+        border: 2px solid $border-color;
+        padding: 0.75rem 1rem;
+        transition: all 0.3s ease;
+        font-size: 1rem;
+
+        &:hover:not(:disabled) {
+          border-color: $primary-light;
+        }
+
+        &:focus {
+          border-color: $primary-color;
+          box-shadow: 0 0 0 3px rgba(14, 165, 233, 0.1);
+        }
+
+        @media (max-width: 480px) {
+          padding: 0.65rem 0.8rem;
+          font-size: 0.95rem;
+        }
+      }
+
+      label {
+        color: $text-light;
+        font-weight: 500;
+
+        @media (max-width: 480px) {
+          font-size: 0.9rem;
+        }
+      }
+    }
+  }
+}
+
+.card-title {
+  margin: 0 0 2rem 0;
+  text-align: center;
+  font-size: 1.35rem;
+  font-weight: 700;
+  color: $text-dark;
+
+  @media (max-width: 768px) {
+    font-size: 1.25rem;
+    margin-bottom: 1.5rem;
+  }
+
+  @media (max-width: 480px) {
+    font-size: 1.1rem;
+    margin-bottom: 1rem;
+  }
+}
+
+// Form Row
+.form-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+
+  @media (max-width: 768px) {
+    gap: 0.75rem;
+  }
+
+  @media (max-width: 480px) {
+    grid-template-columns: 1fr;
+    gap: 0.5rem;
+  }
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+
+  &.full-width {
+    grid-column: 1 / -1;
+  }
+}
+
+// Terms Section
+.terms-section {
+  display: flex;
+  gap: 1rem;
+  align-items: flex-start;
+  margin: 1.5rem 0 2rem 0;
+
+  @media (max-width: 768px) {
+    margin: 1.25rem 0 1.5rem 0;
+    gap: 0.75rem;
+  }
+
+  @media (max-width: 480px) {
+    margin: 1rem 0 1.25rem 0;
+    gap: 0.5rem;
+  }
+
+  ::ng-deep {
+    p-checkbox {
+      .p-checkbox {
+        .p-checkbox-box {
+          border-radius: 6px;
+          border: 2px solid $border-color;
+          min-width: 24px;
+
+          &.p-highlight {
+            background: $primary-color;
+            border-color: $primary-color;
+          }
+        }
+      }
+    }
+  }
+}
+
+.terms-text {
+  color: $text-light;
+  font-size: 0.95rem;
+  line-height: 1.5;
+  flex: 1;
+
+  @media (max-width: 480px) {
+    font-size: 0.85rem;
+  }
+}
+
+// Action Section
+.action-section {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+
+  ::ng-deep {
+    p-button {
+      width: 100%;
+
+      button {
+        width: 100%;
+        border-radius: 8px;
+        font-weight: 600;
+        padding: 0.75rem 2rem !important;
+        transition: all 0.3s ease;
+        box-shadow: 0 4px 12px rgba(14, 165, 233, 0.3);
+
+        &:hover {
+          box-shadow: 0 6px 16px rgba(14, 165, 233, 0.4);
+          transform: translateY(-2px);
+        }
+
+        &:active {
+          transform: translateY(0);
+        }
+
+        @media (max-width: 480px) {
+          padding: 0.65rem 1.5rem !important;
+          font-size: 0.95rem;
+        }
+      }
+    }
+  }
+}
+
+// Utilities
+.full-width {
+  width: 100%;
+}
+
+.landing-container {
+  padding-left: 15%;
+  padding-right: 15%;
+
+  @media (max-width: 1024px) {
+    padding-left: 8%;
+    padding-right: 8%;
+  }
+
+  @media (max-width: 768px) {
+    padding-left: 5%;
+    padding-right: 5%;
+  }
+
+  @media (max-width: 480px) {
+    padding-left: 3%;
+    padding-right: 3%;
+  }
 }
 
 .sub-headline {
-    color: #65758b;
-    font-size: 19px;
+  color: $text-light;
+  font-size: 1.1rem;
+  line-height: 1.6;
+
+  @media (max-width: 768px) {
+    font-size: 1rem;
+  }
+
+  @media (max-width: 480px) {
+    font-size: 0.9rem;
+  }
 }

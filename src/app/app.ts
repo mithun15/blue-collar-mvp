@@ -5,20 +5,17 @@ import { AvatarModule } from 'primeng/avatar';
 import { ButtonModule } from 'primeng/button';
 import { DividerModule } from 'primeng/divider';
 import { Menubar } from 'primeng/menubar';
-import { SelectModule } from 'primeng/select';
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet, SelectModule, Menubar, AvatarModule, ButtonModule, DividerModule],
+  imports: [RouterOutlet, Menubar, AvatarModule, ButtonModule, DividerModule],
   templateUrl: './app.html',
   styleUrl: './app.scss',
 })
 export class App {
-  public languages = [
-    { label: 'English', code: 'en' },
-    { label: 'हिंदी', code: 'hi' },
-  ];
   protected readonly title = signal('blue-collar-mvp');
+  currentLanguage = signal<'en' | 'hi'>('hi');
+
   private translate = inject(TranslateService);
 
   constructor() {
@@ -27,7 +24,8 @@ export class App {
     this.translate.use('hi');
   }
 
-  onLangChange(event: any) {
-    this.translate.use(event.value);
+  setLanguage(lang: 'en' | 'hi') {
+    this.currentLanguage.set(lang);
+    this.translate.use(lang);
   }
 }

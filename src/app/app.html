@@ -1,23 +1,31 @@
 <p-menubar>
   <ng-template #start>
     <div style="display: flex; align-items: center; gap: 2rem">
-      <img src="/images/bluecrew.png" style="height: 40px" />
-      <span>Blue Collar MVP</span>
+      <img src="/images/rriivrr.png" style="height: 40px" />
+      <span>Rriivrr MVP</span>
     </div>
   </ng-template>
   <ng-template #end>
-    <div
-      class="flex items-center gap-2"
-      style="display: flex; justify-content: flex-end; gap: 1rem"
-    >
-      <p-select
-        [options]="languages"
-        optionLabel="label"
-        optionValue="code"
-        placeholder="Language"
-        class="w-full md:w-56"
-        (onChange)="onLangChange($event)"
-      />
+    <div class="language-controls">
+      <div class="language-toggle">
+        <button
+          class="lang-btn"
+          [class.active]="currentLanguage() === 'en'"
+          (click)="setLanguage('en')"
+          title="English"
+        >
+          EN
+        </button>
+        <span class="lang-separator"></span>
+        <button
+          class="lang-btn"
+          [class.active]="currentLanguage() === 'hi'"
+          (click)="setLanguage('hi')"
+          title="हिंदी"
+        >
+          हि
+        </button>
+      </div>
       <p-button label="Log In" variant="text" severity="secondary" />
       <!-- <p-avatar image="/images/construction-worker.png" shape="circle" /> -->
     </div>
@@ -25,4 +33,4 @@
 </p-menubar>
 <router-outlet />
 <p-divider style="margin-top: 3rem" />
-<div style="height: 5rem">Footer</div>
+<footer class="app-footer">Footer</footer>

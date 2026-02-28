@@ -1,73 +1,75 @@
-<div
-  class="employer-sign-up"
-  style="display: flex; align-items: center; margin-top: 2rem"
-  [formGroup]="employerSignUpForm"
->
-  <div style="flex: 1; justify-content: center">
-    <div class="headline" style="display: flex; flex-direction: column">
-      <h1>Lorem Ipsum</h1>
-      <h1 class="headline-emphasis">Neque porro quisquam</h1>
+<div class="employer-sign-up" [formGroup]="employerSignUpForm">
+  <div class="content-wrapper">
+    <div class="headline-section">
+      <div class="headline">
+        <h1>Lorem Ipsum</h1>
+        <h1 class="headline-emphasis">Neque porro quisquam</h1>
+      </div>
+    </div>
+    <div class="form-section">
+      <p-card class="signup-card">
+        <h3 class="card-title">Create a Free Business Account</h3>
+
+        <div class="form-row">
+          <div class="form-group">
+            <p-floatlabel variant="on">
+              <input pInputText id="first_name" formControlName="firstName" />
+              <label for="first_name">First Name</label>
+            </p-floatlabel>
+          </div>
+          <div class="form-group">
+            <p-floatlabel variant="on">
+              <input pInputText id="last_name" formControlName="lastName" />
+              <label for="last_name">Last Name</label>
+            </p-floatlabel>
+          </div>
+        </div>
+        <p-divider />
+
+        <div class="form-row">
+          <div class="form-group">
+            <p-floatlabel variant="on">
+              <input pInputText id="company" formControlName="company" />
+              <label for="company">Company</label>
+            </p-floatlabel>
+          </div>
+          <div class="form-group">
+            <p-floatlabel variant="on">
+              <input pInputText id="phone" formControlName="mobile" />
+              <label for="phone">Phone</label>
+            </p-floatlabel>
+          </div>
+        </div>
+        <p-divider />
+
+        <div class="form-group full-width">
+          <p-floatlabel variant="on">
+            <input pInputText id="email" formControlName="email" class="full-width" />
+            <label for="email">Email</label>
+          </p-floatlabel>
+        </div>
+        <p-divider />
+
+        <div class="form-group full-width">
+          <p-floatlabel variant="on">
+            <input pInputText id="password" formControlName="password" class="full-width" />
+            <label for="password">Password</label>
+          </p-floatlabel>
+        </div>
+        <p-divider />
+
+        <div class="terms-section">
+          <p-checkbox [binary]="true" />
+          <span class="terms-text"
+            >Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum
+            has been the industry's standard dummy text ever since the 1500s,</span
+          >
+        </div>
+
+        <div class="action-section">
+          <p-button severity="info" label="Sign Up" (click)="signUp()" />
+        </div>
+      </p-card>
     </div>
   </div>
-  <p-card>
-    <h3 style="margin-bottom: 2rem; display: flex; justify-content: center">
-      Create a Free Business Account
-    </h3>
-    <div style="display: flex; gap: 1rem; justify-content: space-between">
-      <div style="display: flex; justify-content: center; align-items: center; gap: 1rem">
-        <p-floatlabel variant="on">
-          <input pInputText id="first_name" formControlName="firstName" />
-          <label for="first_name">First Name</label>
-        </p-floatlabel>
-      </div>
-      <div style="display: flex; justify-content: center; align-items: center; gap: 1rem">
-        <p-floatlabel variant="on">
-          <input pInputText id="last_name" formControlName="lastName" />
-          <label for="last_name">Last Name</label>
-        </p-floatlabel>
-      </div>
-    </div>
-    <p-divider />
-    <div style="display: flex; gap: 1rem; justify-content: space-between">
-      <div style="display: flex; justify-content: center; align-items: center; gap: 1rem">
-        <p-floatlabel variant="on">
-          <input pInputText id="company" formControlName="company" />
-          <label for="company">Company</label>
-        </p-floatlabel>
-      </div>
-      <div style="display: flex; justify-content: center; align-items: center; gap: 1rem">
-        <p-floatlabel variant="on">
-          <input pInputText id="phone" formControlName="mobile" />
-          <label for="phone">Phone</label>
-        </p-floatlabel>
-      </div>
-    </div>
-    <p-divider />
-    <div style="width: 100%">
-      <p-floatlabel variant="on">
-        <input pInputText id="email" formControlName="email" class="full-width" />
-        <label for="email">Email</label>
-      </p-floatlabel>
-    </div>
-    <p-divider />
-    <div style="width: 100%">
-      <p-floatlabel variant="on">
-        <input pInputText id="password" formControlName="password" class="full-width" />
-        <label for="password">Password</label>
-      </p-floatlabel>
-    </div>
-    <p-divider />
-    <div style="display: flex; gap: 1rem; margin-bottom: 2rem">
-      <p-checkbox [binary]="true" />
-      <span
-        >Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has
-        been the industry's standard dummy text ever since the 1500s,</span
-      >
-    </div>
-    <div
-      style="display: flex; align-items: center; justify-content: center; gap: 1rem; width: 100%"
-    >
-      <p-button severity="info" label="Sign Up" (click)="signUp()" />
-    </div>
-  </p-card>
 </div>

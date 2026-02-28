@@ -1,5 +1,5 @@
-<div class="card flex justify-center" [formGroup]="jobPostingForm">
-  <p-stepper [value]="1" class="basis-[50rem]">
+<div class="card flex justify-center stepper-wrapper" [formGroup]="jobPostingForm">
+  <p-stepper [value]="1" class="stepper-container">
     <p-step-list>
       <p-step [value]="1"></p-step>
       <p-step [value]="2"></p-step>
@@ -10,30 +10,31 @@
       <p-step-panel [value]="1">
         <ng-template #content let-activateCallback="activateCallback">
           <div class="step-1-container">
-            <div style="display: flex; margin-top: 1rem">
+            <div class="skill-input-wrapper">
               <p-select
                 [options]="skills"
                 optionLabel="name"
                 optionValue="code"
                 placeholder="Skill required"
-                class="w-full md:w-56"
+                class="w-full"
                 formControlName="skill"
               />
             </div>
             <div class="workers-count">
-              <div>कितने लोग चाहिए ?</div>
-              @for (n of peopleOptions; track n) {
-                <p-button
-                  [label]="n.label"
-                  [outlined]="selectedPeople !== n.value"
-                  (onClick)="peopleSelected(n)"
-                ></p-button>
-              }
-              <!-- <p-selectButton [options]="peopleOptions" [(ngModel)]="selectedPeople"> -->
-              <!-- </p-selectButton> -->
+              <div class="label-text">कितने लोग चाहिए ?</div>
+              <div class="button-wrapper">
+                @for (n of peopleOptions; track n) {
+                  <p-button
+                    [label]="n.label"
+                    [outlined]="selectedPeople !== n.value"
+                    (onClick)="peopleSelected(n)"
+                    class="people-button"
+                  ></p-button>
+                }
+              </div>
             </div>
-            <div>
-              <div>एक की दैनिक मज़दूरी</div>
+            <div class="wage-section">
+              <div class="label-text">एक की दैनिक मज़दूरी</div>
               <p-inputnumber
                 [showButtons]="true"
                 buttonLayout="horizontal"
@@ -43,6 +44,7 @@
                 mode="currency"
                 currency="INR"
                 formControlName="wagePerPerson"
+                class="wage-input"
               >
                 <ng-template #incrementbuttonicon>
                   <span class="pi pi-plus"></span>
@@ -53,7 +55,7 @@
               </p-inputnumber>
             </div>
           </div>
-          <div class="flex pt-6 justify-end">
+          <div class="navigation-buttons">
             <p-button
               label="अगला स्टेप"
               icon="pi pi-arrow-right"
@@ -66,27 +68,31 @@
       <p-step-panel [value]="2">
         <ng-template #content let-activateCallback="activateCallback">
           <div class="step-2-container">
-            <div>
+            <div class="date-section">
               <div class="workers-count">
-                <div>कब चाहिए ?</div>
-                @for (n of timeOptions; track n) {
-                  <div style="margin: 10px">
-                    <p-button
-                      [label]="n.label"
-                      [outlined]="selectedTime !== n.value"
-                      (onClick)="selectedTime = n.value"
-                    ></p-button>
-                  </div>
-                }
-                <p-datepicker
-                  [showButtonBar]="true"
-                  placeholder="तारीख चुने"
-                  formControlName="date"
-                />
+                <div class="label-text">कब चाहिए ?</div>
+                <div class="button-wrapper">
+                  @for (n of timeOptions; track n) {
+                    <div class="time-button-item">
+                      <p-button
+                        [label]="n.label"
+                        [outlined]="selectedTime !== n.value"
+                        (onClick)="selectedTime = n.value"
+                        class="time-button"
+                      ></p-button>
+                    </div>
+                  }
+                </div>
               </div>
+              <p-datepicker
+                [showButtonBar]="true"
+                placeholder="तारीख चुने"
+                formControlName="date"
+                class="date-picker"
+              />
             </div>
           </div>
-          <div class="flex pt-6 justify-between">
+          <div class="navigation-buttons justify-between">
             <p-button
               severity="secondary"
               icon="pi pi-arrow-left"
@@ -103,76 +109,42 @@
       </p-step-panel>
       <p-step-panel [value]="3">
         <ng-template #content let-activateCallback="activateCallback">
-          <div class="flex flex-col h-48">
-            <div>
-              <div class="time-section">
-                <h3>कितने बजे से</h3>
+          <div class="step-3-container">
+            <div class="time-section">
+              <h3>कितने बजे से</h3>
 
-                <div class="time-box">
-                  <!-- <p-inputNumber
-                    [min]="1"
-                    [max]="12"
-                    [useGrouping]="false"
-                    inputStyleClass="time-input"
-                  >
-                  </p-inputNumber>
-
-                  <span class="colon">:</span>
-
-                  <p-inputNumber
-                    [min]="0"
-                    [max]="59"
-                    [useGrouping]="false"
-                    inputStyleClass="time-input"
-                  >
-                  </p-inputNumber> -->
-                  <p-datepicker
-                    [showButtonBar]="true"
-                    placeholder="समय चुने"
-                    formControlName="fromTime"
-                    [timeOnly]="true"
-                  />
-                </div>
-
-                <p-selectButton [options]="periods"> </p-selectButton>
+              <div class="time-box">
+                <p-datepicker
+                  [showButtonBar]="true"
+                  placeholder="समय चुने"
+                  formControlName="fromTime"
+                  [timeOnly]="true"
+                  class="time-picker"
+                />
               </div>
 
-              <hr />
+              <p-selectButton [options]="periods" class="time-select"></p-selectButton>
+            </div>
 
-              <div class="time-section">
-                <h3>कितने बजे तक</h3>
+            <hr />
 
-                <div class="time-box">
-                  <!-- <p-inputNumber
-                    [min]="1"
-                    [max]="12"
-                    [useGrouping]="false"
-                    inputStyleClass="time-input"
-                  >
-                  </p-inputNumber>
+            <div class="time-section">
+              <h3>कितने बजे तक</h3>
 
-                  <span class="colon">:</span>
-
-                  <p-inputNumber
-                    [min]="0"
-                    [max]="59"
-                    [useGrouping]="false"
-                    inputStyleClass="time-input"
-                  >
-                  </p-inputNumber> -->
-                  <p-datepicker
-                    [showButtonBar]="true"
-                    placeholder="समय चुने"
-                    formControlName="toTime"
-                    [timeOnly]="true"
-                  />
-                </div>
-
-                <p-selectButton [options]="periods"> </p-selectButton>
+              <div class="time-box">
+                <p-datepicker
+                  [showButtonBar]="true"
+                  placeholder="समय चुने"
+                  formControlName="toTime"
+                  [timeOnly]="true"
+                  class="time-picker"
+                />
               </div>
+
+              <p-selectButton [options]="periods" class="time-select"></p-selectButton>
             </div>
           </div>
-          <div class="flex pt-6 justify-start">
+          <div class="navigation-buttons justify-start">
             <p-button
               icon="pi pi-arrow-left"
               iconPos="right"
@@ -197,7 +169,7 @@
               pInputText
               type="text"
               placeholder="नाम"
-              class="full-width"
+              class="full-width input-field"
               formControlName="name"
             />
 
@@ -205,7 +177,7 @@
               pInputText
               type="tel"
               placeholder="फ़ोन नंबर"
-              class="full-width"
+              class="full-width input-field"
               formControlName="phone"
             />
 
@@ -215,7 +187,7 @@
               pInputTextarea
               rows="4"
               placeholder="पूरा एड्रेस लिखें"
-              class="full-width"
+              class="full-width input-field"
               formControlName="address"
             ></textarea>
 
@@ -223,7 +195,7 @@
               pInputText
               type="text"
               placeholder="आस पास क्या है/अन्य जानकारी"
-              class="full-width"
+              class="full-width input-field"
               formControlName="landmark"
             />
 
@@ -235,7 +207,7 @@
             ></p-select>
           </div>
 
-          <div class="flex pt-6 justify-start">
+          <div class="navigation-buttons justify-start">
             <p-button
               icon="pi pi-arrow-left"
               iconPos="right"

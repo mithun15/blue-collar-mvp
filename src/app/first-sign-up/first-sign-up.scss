@@ -1,3 +1,206 @@
+// ===== COLOR VARIABLES =====
+$primary-color: #0ea5e9; // Cyan
+$primary-dark: #0284c7;
+$primary-light: #06b6d4;
+$text-dark: #1f2937;
+$text-light: #6b7280;
+$border-color: #e5e7eb;
+$background-light: #f9fafb;
+$background-white: #ffffff;
+
+// ===== FIRST SIGN-UP RESPONSIVE =====
+
+.first-sign-up-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 85vh;
+  padding: 2rem;
+
+  @media (max-width: 768px) {
+    min-height: auto;
+    padding: 1.5rem;
+  }
+
+  @media (max-width: 480px) {
+    min-height: auto;
+    padding: 1rem;
+  }
+}
+
+.choice-section {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 3rem;
+  flex-wrap: wrap;
+  width: 100%;
+  max-width: 1000px;
+
+  @media (max-width: 1024px) {
+    gap: 2.5rem;
+  }
+
+  @media (max-width: 768px) {
+    gap: 2rem;
+    flex-direction: column;
+    padding: 2rem 0;
+  }
+
+  @media (max-width: 480px) {
+    gap: 1.5rem;
+    padding: 1rem 0;
+  }
+}
+
+.choice-button {
+  flex: 1;
+  min-width: 280px;
+  max-width: 450px;
+  height: auto;
+
+  ::ng-deep {
+    button {
+      border-radius: 12px;
+      border: 2px solid $border-color;
+      padding: 2rem !important;
+      transition: all 0.3s ease;
+      background: $background-white;
+      color: $text-dark;
+      min-height: 280px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+
+      &:hover {
+        border-color: $primary-light;
+        box-shadow: 0 8px 24px rgba(14, 165, 233, 0.15);
+        transform: translateY(-4px);
+        background: rgba(14, 165, 233, 0.02);
+      }
+
+      &:active {
+        transform: translateY(-2px);
+      }
+
+      @media (max-width: 768px) {
+        padding: 1.5rem !important;
+        min-height: 240px;
+        width: 100%;
+        max-width: 400px;
+      }
+
+      @media (max-width: 480px) {
+        padding: 1.25rem !important;
+        min-height: 200px;
+        max-width: 100%;
+      }
+    }
+  }
+
+  &.worker-button {
+    ::ng-deep {
+      button {
+        &:hover {
+          border-color: #10b981;
+          box-shadow: 0 8px 24px rgba(16, 185, 129, 0.15);
+        }
+      }
+    }
+  }
+
+  &.employer-button {
+    ::ng-deep {
+      button {
+        &:hover {
+          border-color: #f59e0b;
+          box-shadow: 0 8px 24px rgba(245, 158, 11, 0.15);
+        }
+      }
+    }
+  }
+}
+
+.button-content {
+  display: flex;
+  gap: 2rem;
+  justify-content: center;
+  align-items: center;
+  flex-direction: row;
+  width: 100%;
+
+  @media (max-width: 1024px) {
+    gap: 1.5rem;
+  }
+
+  @media (max-width: 768px) {
+    gap: 1.25rem;
+  }
+
+  @media (max-width: 480px) {
+    gap: 1rem;
+    flex-direction: column;
+  }
+}
+
+.button-image {
+  width: auto;
+  height: auto;
+  max-width: 150px;
+  max-height: 150px;
+  object-fit: cover;
+  border-radius: 8px;
+  flex-shrink: 0;
+
+  @media (max-width: 1024px) {
+    max-width: 130px;
+    max-height: 130px;
+  }
+
+  @media (max-width: 768px) {
+    max-width: 120px;
+    max-height: 120px;
+  }
+
+  @media (max-width: 480px) {
+    max-width: 100px;
+    max-height: 100px;
+  }
+}
+
+.button-text {
+  margin: 0;
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: $text-dark;
+  line-height: 1.4;
+  text-align: center;
+  flex: 1;
+
+  @media (max-width: 1024px) {
+    font-size: 1rem;
+  }
+
+  @media (max-width: 768px) {
+    font-size: 0.95rem;
+  }
+
+  @media (max-width: 480px) {
+    font-size: 0.85rem;
+    text-align: center;
+  }
+}
+
+// Legacy image styling (if used elsewhere)
 img {
-    max-width: 150px;
+  max-width: 150px;
+  height: auto;
+
+  @media (max-width: 768px) {
+    max-width: 120px;
+  }
+
+  @media (max-width: 480px) {
+    max-width: 100px;
+  }
 }

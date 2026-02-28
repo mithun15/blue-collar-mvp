@@ -1,29 +1,27 @@
 <div class="landing-container">
-  <div
-    class="headline"
-    style="display: flex; flex-direction: column; justify-content: center; align-items: center"
-  >
+  <div class="headline">
     <h1>{{ 'HEADLINE1' | translate }}</h1>
     <h1 class="headline-emphasis">{{ 'HEADLINE2' | translate }}</h1>
   </div>
+
   <p class="sub-headline">
     Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been
     the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley
     of type and scrambled it to make a type specimen book.
   </p>
-  <div
-    style="display: flex; gap: 2rem; align-items: center; justify-content: center; margin-top: 2rem"
-  >
+
+  <div class="cta-buttons">
     <p-button [raised]="true" severity="info" (click)="getStarted()">
       <span class="px-4">Get Started</span>
       <i class="pi pi-arrow-right"></i>
     </p-button>
     <p-button [raised]="true" label="Log In" severity="secondary" />
   </div>
-  <div style="display: flex; justify-content: space-around; margin-top: 5rem">
-    <p-card [style]="{ overflow: 'hidden' }">
+
+  <div class="features-section">
+    <p-card class="feature-card">
       <ng-template #header>
-        <img alt="Card" class="w-full" src="/images/post-jobs.jpg" style="width: 100%" />
+        <img alt="Post Jobs" class="card-image" src="/images/post-jobs.jpg" />
       </ng-template>
       <ng-template #title>Post Jobs</ng-template>
       <ng-template #subtitle>Lorem ipsum dolor</ng-template>
@@ -32,10 +30,11 @@
         repudiandae numquam deserunt quisquam repellat
       </p>
     </p-card>
-    <p-card [style]="{ overflow: 'hidden' }">
+
+    <p-card class="feature-card">
       <ng-template #header>
-        <div style="display: flex; align-items: center; justify-content: center">
-          <img alt="Card" class="w-full" src="/images/find-talent.avif" style="width: 66%" />
+        <div class="card-image-wrapper">
+          <img alt="Find Talent" class="card-image img-66" src="/images/find-talent.avif" />
         </div>
       </ng-template>
       <ng-template #title>Find Talent</ng-template>
@@ -45,9 +44,10 @@
         repudiandae numquam deserunt quisquam repellat
       </p>
     </p-card>
-    <p-card [style]="{ overflow: 'hidden' }">
+
+    <p-card class="feature-card">
       <ng-template #header>
-        <img alt="Card" class="w-full" src="/images/verified-talent.webp" style="width: 112%" />
+        <img alt="Verified Workers" class="card-image img-112" src="/images/verified-talent.webp" />
       </ng-template>
       <ng-template #title>Verified Workers</ng-template>
       <ng-template #subtitle>Lorem ipsum dolor</ng-template>

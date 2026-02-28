@@ -1,46 +1,406 @@
+// ===== COLOR VARIABLES =====
+$primary-color: #0ea5e9; // Cyan
+$primary-dark: #0284c7;
+$primary-light: #06b6d4;
+$secondary-color: #f59e0b; // Amber
+$success-color: #10b981; // Emerald
+$text-dark: #1f2937;
+$text-light: #6b7280;
+$border-color: #e5e7eb;
+$background-light: #f9fafb;
+$background-white: #ffffff;
+
+// ===== RESPONSIVE EMPLOYER DASHBOARD =====
+
 .employer-dashboard {
-    padding-left: 15%;
-    padding-right: 15%;
-    margin-top: 2rem;
+  padding: 2rem 15%;
+  margin-top: 2rem;
+  max-width: 1400px;
+  margin-left: auto;
+  margin-right: auto;
+
+  @media (max-width: 1024px) {
+    padding: 2rem 8%;
+  }
+
+  @media (max-width: 768px) {
+    padding: 1.5rem 5%;
+    margin-top: 1rem;
+  }
+
+  @media (max-width: 480px) {
+    padding: 1rem 3%;
+    margin-top: 0.5rem;
+  }
 }
 
-p-card {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 20%;
-}
+// Welcome Section
+.welcome-section {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  margin-bottom: 3rem;
+  background: linear-gradient(135deg, rgba(14, 165, 233, 0.08) 0%, rgba(6, 182, 212, 0.08) 100%);
+  padding: 2.5rem;
+  border-radius: 12px;
+  border: 1px solid rgba(14, 165, 233, 0.1);
 
-.charts {
-    p-card {
-        width: 30%;
-        flex: 1;
-    }
-
+  @media (max-width: 768px) {
+    gap: 1.5rem;
     margin-bottom: 2rem;
-    display: flex;
+    padding: 1.5rem;
+  }
+
+  @media (max-width: 480px) {
     gap: 1rem;
+    margin-bottom: 1.5rem;
+    padding: 1rem;
+    border-radius: 8px;
+  }
 }
 
-.number-cards {
-    p-card {
-        flex: 1;
+// Title
+.title {
+  font-size: 1.75rem;
+  font-weight: 700;
+  color: $text-dark;
+  margin: 0;
+  letter-spacing: -0.5px;
+
+  @media (max-width: 768px) {
+    font-size: 1.5rem;
+  }
+
+  @media (max-width: 480px) {
+    font-size: 1.25rem;
+  }
+}
+
+// Headline Section
+.headline {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 0.5rem;
+  text-align: center;
+
+  h1 {
+    margin: 0;
+    font-size: 2.25rem;
+    font-weight: 700;
+    color: $text-dark;
+    line-height: 1.2;
+
+    @media (max-width: 768px) {
+      font-size: 1.75rem;
     }
+
+    @media (max-width: 480px) {
+      font-size: 1.35rem;
+    }
+  }
 }
 
 .headline-emphasis {
-    color: #63c5da;
-    font-family: Georgia, 'Times New Roman', Times, serif;
+  color: $primary-color;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background: linear-gradient(135deg, $primary-color 0%, $primary-light 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
 }
 
-.headline {
-    margin-top: 3rem;
-}
-
+// Action Button
 p-button {
-    align-self: center;
+  align-self: center;
+
+  ::ng-deep {
+    button {
+      border-radius: 8px;
+      font-weight: 600;
+      padding: 0.75rem 2rem !important;
+      transition: all 0.3s ease;
+      box-shadow: 0 4px 12px rgba(14, 165, 233, 0.3);
+
+      &:hover {
+        box-shadow: 0 6px 16px rgba(14, 165, 233, 0.4);
+        transform: translateY(-2px);
+      }
+
+      &:active {
+        transform: translateY(0);
+      }
+
+      @media (max-width: 480px) {
+        padding: 0.65rem 1.5rem !important;
+        font-size: 0.95rem;
+      }
+    }
+  }
 }
 
-:host ::ng-deep app-job-card p-card {
-    margin-bottom: 1rem;
+// Job Cards Container
+.job-cards-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 2rem;
+  margin-bottom: 3rem;
+
+  @media (max-width: 1024px) {
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 1.5rem;
+  }
+
+  @media (max-width: 768px) {
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 1.25rem;
+    margin-bottom: 2rem;
+  }
+
+  @media (max-width: 480px) {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+  }
+
+  app-job-card {
+    ::ng-deep {
+      p-card {
+        margin-bottom: 0 !important;
+
+        .p-card {
+          border-radius: 12px;
+          border: 1px solid $border-color;
+          box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+          transition: all 0.3s ease;
+
+          &:hover {
+            box-shadow: 0 8px 24px rgba(14, 165, 233, 0.15);
+            transform: translateY(-2px);
+            border-color: $primary-light;
+          }
+        }
+      }
+    }
+  }
+}
+
+// Chart Cards
+p-card {
+  border-radius: 12px;
+  border: 1px solid $border-color;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+  transition: all 0.3s ease;
+
+  &:hover {
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+  }
+
+  ::ng-deep {
+    .p-card {
+      border-radius: 12px;
+    }
+  }
+}
+
+.charts {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 2rem;
+  margin-bottom: 3rem;
+
+  @media (max-width: 1024px) {
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 1.5rem;
+  }
+
+  @media (max-width: 768px) {
+    grid-template-columns: 1fr;
+    gap: 1.25rem;
+    margin-bottom: 2rem;
+  }
+
+  p-card {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+}
+
+// Number Cards
+.number-cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 1.5rem;
+  margin-bottom: 3rem;
+
+  @media (max-width: 1024px) {
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 1.25rem;
+  }
+
+  @media (max-width: 768px) {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1rem;
+    margin-bottom: 2rem;
+  }
+
+  @media (max-width: 480px) {
+    grid-template-columns: 1fr;
+    gap: 0.75rem;
+    margin-bottom: 1.5rem;
+  }
+
+  p-card {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 140px;
+
+    ::ng-deep {
+      .p-card-content {
+        padding: 1.5rem;
+
+        @media (max-width: 480px) {
+          padding: 1rem;
+        }
+      }
+    }
+
+    .flex-column-absolute-center {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      gap: 0.5rem;
+      width: 100%;
+
+      h3 {
+        margin: 0;
+        font-size: 0.95rem;
+        color: $text-light;
+        font-weight: 600;
+        letter-spacing: 0.3px;
+
+        @media (max-width: 480px) {
+          font-size: 0.85rem;
+        }
+      }
+
+      p {
+        margin: 0;
+        font-size: 2rem;
+        font-weight: 700;
+        color: $primary-color;
+        line-height: 1;
+
+        @media (max-width: 768px) {
+          font-size: 1.75rem;
+        }
+
+        @media (max-width: 480px) {
+          font-size: 1.5rem;
+        }
+      }
+    }
+  }
+}
+
+// Tables Container
+.table-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 2rem;
+  margin-top: 2rem;
+
+  @media (max-width: 1024px) {
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 1.5rem;
+  }
+
+  @media (max-width: 768px) {
+    grid-template-columns: 1fr;
+    gap: 1.25rem;
+    margin-top: 1.5rem;
+  }
+
+  .card {
+    background: $background-white;
+    border-radius: 12px;
+    border: 1px solid $border-color;
+    padding: 1.5rem;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+    overflow-x: auto;
+
+    @media (max-width: 480px) {
+      padding: 1rem;
+    }
+
+    ::ng-deep {
+      p-table {
+        .p-datatable {
+          border-radius: 8px;
+
+          .p-datatable-thead > tr > th {
+            background: linear-gradient(90deg, #f0f9ff 0%, #f0fdfa 100%);
+            color: $text-dark;
+            font-weight: 600;
+            border-color: $border-color;
+            padding: 1rem;
+
+            @media (max-width: 480px) {
+              padding: 0.75rem;
+              font-size: 0.85rem;
+            }
+          }
+
+          .p-datatable-tbody > tr {
+            border-color: $border-color;
+            transition: all 0.2s ease;
+
+            &:hover {
+              background: rgba(14, 165, 233, 0.05);
+            }
+
+            > td {
+              padding: 1rem;
+              color: $text-dark;
+
+              @media (max-width: 480px) {
+                padding: 0.75rem;
+                font-size: 0.9rem;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+// Utilities
+:host ::ng-deep {
+  app-job-card {
+    display: contents;
+  }
+
+  .flex-column-absolute-center {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+
+  p-card {
+    .p-card {
+      background: $background-white;
+      border-radius: 12px;
+      border: 1px solid $border-color;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+    }
+  }
 }

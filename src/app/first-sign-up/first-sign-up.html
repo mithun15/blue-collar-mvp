@@ -1,14 +1,16 @@
-<div style="display: flex; justify-content: center; align-items: center; gap: 3rem; height: 85vh">
-  <p-button [outlined]="true" (click)="workerSelected()">
-    <div style="display: flex; gap: 2rem; justify-content: center; align-items: center">
-      <img src="/images/worker.jpg" />
-      <p>{{ 'WANT_WORK' | translate }}</p>
-    </div>
-  </p-button>
-  <p-button [outlined]="true" (click)="emplyerSignUp()">
-    <div style="display: flex; gap: 2rem; justify-content: center; align-items: center">
-      <img src="/images/employer.jpg" />
-      <p>{{ 'WANT_WORKER' | translate }}</p>
-    </div>
-  </p-button>
+<div class="first-sign-up-container">
+  <div class="choice-section">
+    <p-button class="choice-button worker-button" [outlined]="true" (click)="workerSelected()">
+      <div class="button-content">
+        <img src="/images/worker.jpg" alt="Worker" class="button-image" />
+        <p class="button-text">{{ 'WANT_WORK' | translate }}</p>
+      </div>
+    </p-button>
+    <p-button class="choice-button employer-button" [outlined]="true" (click)="emplyerSignUp()">
+      <div class="button-content">
+        <img src="/images/employer.jpg" alt="Employer" class="button-image" />
+        <p class="button-text">{{ 'WANT_WORKER' | translate }}</p>
+      </div>
+    </p-button>
+  </div>
 </div>

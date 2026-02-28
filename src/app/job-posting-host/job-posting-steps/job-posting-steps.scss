@@ -1,32 +1,473 @@
-.step-1-container {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
+// ===== COLOR VARIABLES =====
+$primary-color: #0ea5e9; // Cyan
+$primary-dark: #0284c7;
+$primary-light: #06b6d4;
+$secondary-color: #f59e0b; // Amber
+$success-color: #10b981; // Emerald
+$error-color: #ef4444; // Red
+$text-dark: #1f2937;
+$text-light: #6b7280;
+$border-color: #e5e7eb;
+$background-light: #f9fafb;
+$background-white: #ffffff;
+
+// ===== SPACING & SIZING =====
+$spacing-xs: 0.25rem;
+$spacing-sm: 0.5rem;
+$spacing-md: 1rem;
+$spacing-lg: 1.5rem;
+$spacing-xl: 2rem;
+
+// ===== RESPONSIVE Stepper Component Styles =====
+
+.stepper-wrapper {
+  width: 100%;
+  padding: 0.5rem;
+  background: linear-gradient(135deg, #f0f9ff 0%, #f0fdfa 100%);
+  border-radius: 12px;
+
+  @media (max-width: 768px) {
+    padding: 0.25rem;
+  }
+
+  @media (max-width: 480px) {
+    padding: 0;
+    border-radius: 8px;
+  }
 }
 
-.workers-count {
-    p-button {
-        margin: 5px;
+.stepper-container {
+  width: 100%;
+  max-width: 50rem;
+  min-width: 100%;
+
+  @media (max-width: 768px) {
+    max-width: 100%;
+    min-width: auto;
+  }
+
+  ::ng-deep {
+    .p-stepper {
+      background: $background-white;
+      border: 1px solid $border-color;
+      border-radius: 12px;
+      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+
+      .p-stepper-list {
+        background: linear-gradient(90deg, #f0f9ff 0%, #ecfdf5 100%);
+        border-bottom: 2px solid $border-color;
+        padding: 1rem;
+        border-radius: 12px 12px 0 0;
+
+        .p-step {
+          .p-step-header {
+            .p-step-header-action {
+              background: $background-light;
+              border: 2px solid $border-color;
+              color: $text-light;
+              border-radius: 50%;
+              transition: all 0.3s ease;
+
+              &:hover:not(.p-disabled) {
+                background: $primary-light;
+                border-color: $primary-color;
+                color: white;
+                transform: scale(1.1);
+              }
+
+              &.p-step-active {
+                background: $primary-color;
+                border-color: $primary-dark;
+                color: white;
+                box-shadow: 0 4px 12px rgba(14, 165, 233, 0.3);
+              }
+            }
+
+            &.p-step-active .p-step-header-action {
+              background: $primary-color;
+              border-color: $primary-dark;
+            }
+          }
+        }
+      }
+
+      .p-stepper-content {
+        padding: 1.5rem;
+        background: $background-white;
+
+        @media (max-width: 768px) {
+          padding: 1rem;
+        }
+
+        @media (max-width: 480px) {
+          padding: 0.75rem;
+        }
+      }
     }
+  }
 }
 
+
+// Step 1 Container
+.step-1-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  gap: 2rem;
+  padding: 1rem;
+  background: linear-gradient(180deg, rgba(15, 23, 42, 0.02) 0%, rgba(255, 255, 255, 0) 100%);
+  border-radius: 8px;
+
+  @media (max-width: 768px) {
+    gap: 1.5rem;
+    padding: 1rem 0.5rem;
+  }
+
+  @media (max-width: 480px) {
+    gap: 1rem;
+    padding: 0.75rem;
+  }
+}
+
+.skill-input-wrapper {
+  width: 100%;
+  max-width: 400px;
+  display: flex;
+
+  @media (max-width: 768px) {
+    max-width: 100%;
+  }
+
+  p-select {
+    width: 100%;
+
+    ::ng-deep {
+      .p-select {
+        background: $background-white;
+        border: 2px solid $border-color;
+        border-radius: 8px;
+        transition: all 0.3s ease;
+
+        &:hover:not(.p-disabled) {
+          border-color: $primary-light;
+        }
+
+        &.p-focus,
+        &.ng-touched.ng-invalid {
+          border-color: $primary-color;
+          box-shadow: 0 0 0 3px rgba(14, 165, 233, 0.1);
+        }
+      }
+    }
+  }
+}
+
+.wage-section {
+  width: 100%;
+  max-width: 400px;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  background: rgba(14, 165, 233, 0.05);
+  padding: 1.25rem;
+  border-radius: 8px;
+  border-left: 4px solid $primary-color;
+
+  @media (max-width: 768px) {
+    max-width: 100%;
+  }
+
+  @media (max-width: 480px) {
+    padding: 1rem;
+  }
+}
+
+.wage-input {
+  width: 100%;
+
+  ::ng-deep {
+    .p-inputnumber {
+      width: 100%;
+      border-radius: 8px;
+
+      .p-inputnumber-input {
+        background: $background-white;
+        border: 2px solid $border-color;
+        border-radius: 6px;
+        color: $text-dark;
+        font-weight: 500;
+        transition: all 0.3s ease;
+
+        &:focus {
+          border-color: $primary-color;
+          box-shadow: 0 0 0 3px rgba(14, 165, 233, 0.1);
+        }
+      }
+
+      .p-inputnumber-button {
+        background: $primary-color;
+        border: none;
+        color: white;
+        transition: all 0.2s ease;
+
+        &:hover {
+          background: $primary-dark;
+        }
+
+        &:active {
+          background: darken($primary-dark, 5%);
+        }
+      }
+    }
+  }
+}
+
+// Workers Count Section
+.workers-count {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+}
+
+.label-text {
+  font-weight: 700;
+  font-size: 1.05rem;
+  color: $text-dark;
+  text-transform: capitalize;
+  letter-spacing: 0.3px;
+
+  @media (max-width: 480px) {
+    font-size: 0.95rem;
+  }
+}
+
+.button-wrapper {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0.5rem;
+  width: 100%;
+
+  @media (max-width: 768px) {
+    gap: 0.4rem;
+  }
+
+  @media (max-width: 480px) {
+    gap: 0.3rem;
+  }
+
+  p-button {
+    ::ng-deep {
+      button {
+        border-radius: 8px;
+        font-weight: 600;
+        transition: all 0.3s ease;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.08);
+
+        &.p-button-outlined {
+          border-color: $border-color;
+          color: $text-light;
+
+          &:hover {
+            background: $background-light;
+            border-color: $primary-light;
+            color: $primary-color;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+          }
+        }
+
+        &.p-button-default {
+          background: $primary-color;
+          border: none;
+          color: white;
+          box-shadow: 0 4px 12px rgba(14, 165, 233, 0.3);
+
+          &:hover {
+            background: $primary-dark;
+            box-shadow: 0 6px 16px rgba(14, 165, 233, 0.4);
+          }
+
+          &:active {
+            background: darken($primary-dark, 5%);
+          }
+        }
+      }
+    }
+  }
+}
+
+.people-button {
+  flex: 0 1 auto;
+  min-width: 50px;
+
+  @media (max-width: 768px) {
+    min-width: 45px;
+    font-size: 0.85rem;
+  }
+
+  @media (max-width: 480px) {
+    min-width: 40px;
+    font-size: 0.8rem;
+    padding: 0.4rem 0.6rem !important;
+  }
+}
+
+// Step 2 Container
 .step-2-container {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: row;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  padding: 1rem;
+  width: 100%;
+  background: linear-gradient(180deg, rgba(15, 23, 42, 0.02) 0%, rgba(255, 255, 255, 0) 100%);
+  border-radius: 8px;
+
+  @media (max-width: 768px) {
+    padding: 1rem 0.5rem;
+  }
+
+  @media (max-width: 480px) {
+    padding: 0.75rem;
+  }
 }
 
-:host::ng-deep {
-    .p-datepicker .p-datepicker-panel {
-    min-width: 163%;
-}
+.date-section {
+  width: 100%;
+  max-width: 400px;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+
+  @media (max-width: 768px) {
+    max-width: 100%;
+    gap: 1rem;
+  }
+
+  @media (max-width: 480px) {
+    gap: 0.75rem;
+  }
 }
 
+.time-button-item {
+  margin: 0.5rem;
+  display: inline-block;
+
+  @media (max-width: 480px) {
+    margin: 0.35rem;
+  }
+}
+
+.time-button {
+  @media (max-width: 480px) {
+    font-size: 0.8rem;
+    padding: 0.4rem 0.8rem !important;
+  }
+}
+
+.date-picker {
+  width: 100%;
+
+  ::ng-deep {
+    .p-datepicker {
+      width: 100%;
+
+      .p-datepicker-input {
+        background: $background-white;
+        border: 2px solid $border-color;
+        border-radius: 8px;
+        color: $text-dark;
+        font-weight: 500;
+        padding: 0.75rem 1rem;
+        transition: all 0.3s ease;
+
+        &:hover:not(:disabled) {
+          border-color: $primary-light;
+        }
+
+        &:focus {
+          border-color: $primary-color;
+          box-shadow: 0 0 0 3px rgba(14, 165, 233, 0.1);
+        }
+      }
+
+      .p-datepicker-trigger {
+        background: $primary-color;
+        border: none;
+        border-radius: 6px;
+        color: white;
+
+        &:hover {
+          background: $primary-dark;
+        }
+      }
+    }
+
+    .p-datepicker-panel {
+      border-radius: 8px;
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
+      border: 1px solid $border-color;
+    }
+  }
+}
+
+// Step 3 Container
+.step-3-container {
+  display: flex;
+  flex-direction: column;
+  padding: 1rem;
+  width: 100%;
+  background: linear-gradient(180deg, rgba(15, 23, 42, 0.02) 0%, rgba(255, 255, 255, 0) 100%);
+  border-radius: 8px;
+
+  @media (max-width: 768px) {
+    padding: 1rem 0.5rem;
+  }
+
+  @media (max-width: 480px) {
+    padding: 0.75rem;
+  }
+}
+
+// Time Section
 .time-section {
   text-align: center;
   margin-bottom: 1.5rem;
+  padding: 1.5rem;
+  background: rgba(255, 255, 255, 0.7);
+  border-radius: 8px;
+  border: 1px solid rgba(14, 165, 233, 0.1);
+
+  @media (max-width: 768px) {
+    margin-bottom: 1rem;
+    padding: 1rem;
+  }
+
+  @media (max-width: 480px) {
+    margin-bottom: 0.75rem;
+    padding: 0.75rem;
+  }
+
+  h3 {
+    margin-bottom: 1rem;
+    font-weight: 700;
+    font-size: 1.05rem;
+    color: $text-dark;
+    letter-spacing: 0.3px;
+
+    @media (max-width: 768px) {
+      margin-bottom: 0.75rem;
+      font-size: 1rem;
+    }
+
+    @media (max-width: 480px) {
+      margin-bottom: 0.5rem;
+      font-size: 0.95rem;
+    }
+  }
 }
 
 .time-box {
@@ -35,6 +476,45 @@
   align-items: center;
   gap: 0.5rem;
   margin: 1rem 0;
+  flex-wrap: wrap;
+
+  @media (max-width: 768px) {
+    margin: 0.75rem 0;
+  }
+
+  @media (max-width: 480px) {
+    margin: 0.5rem 0;
+  }
+}
+
+.time-picker {
+  width: 100%;
+  max-width: 300px;
+
+  @media (max-width: 768px) {
+    max-width: 100%;
+  }
+
+  ::ng-deep {
+    .p-datepicker-input {
+      background: $background-white;
+      border: 2px solid $border-color;
+      border-radius: 8px;
+      color: $text-dark;
+      font-weight: 500;
+      padding: 0.75rem 1rem;
+      transition: all 0.3s ease;
+
+      &:hover:not(:disabled) {
+        border-color: $primary-light;
+      }
+
+      &:focus {
+        border-color: $primary-color;
+        box-shadow: 0 0 0 3px rgba(14, 165, 233, 0.1);
+      }
+    }
+  }
 }
 
 .time-input {
@@ -43,43 +523,435 @@
   font-size: 24px;
   font-weight: bold;
   text-align: center;
+  background: $background-light;
+  border: 2px solid $border-color;
+  border-radius: 6px;
+  color: $text-dark;
+
+  @media (max-width: 768px) {
+    width: 70px;
+    height: 50px;
+    font-size: 20px;
+  }
+
+  @media (max-width: 480px) {
+    width: 60px;
+    height: 45px;
+    font-size: 18px;
+  }
 }
 
 .colon {
   font-size: 28px;
   font-weight: bold;
+  color: $text-dark;
+
+  @media (max-width: 768px) {
+    font-size: 24px;
+  }
+
+  @media (max-width: 480px) {
+    font-size: 20px;
+  }
 }
 
-.p-selectbutton {
+.time-select {
+  display: flex;
   justify-content: center;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+
+  @media (max-width: 480px) {
+    gap: 0.3rem;
+  }
+
+  ::ng-deep {
+    .p-selectbutton {
+      .p-button {
+        background: $background-light;
+        border: 2px solid $border-color;
+        color: $text-light;
+        border-radius: 6px;
+        font-weight: 600;
+        transition: all 0.3s ease;
+
+        &:hover {
+          background: $primary-light;
+          border-color: $primary-light;
+          color: white;
+        }
+
+        &.p-pressed {
+          background: $primary-color;
+          border-color: $primary-dark;
+          color: white;
+          box-shadow: 0 4px 12px rgba(14, 165, 233, 0.3);
+        }
+      }
+    }
+  }
+}
+
+::ng-deep {
+  .p-selectbutton .p-button {
+    @media (max-width: 480px) {
+      font-size: 0.8rem;
+      padding: 0.4rem 0.6rem !important;
+    }
+  }
+
+  .p-datepicker .p-datepicker-panel {
+    min-width: 163%;
+
+    @media (max-width: 768px) {
+      min-width: 120%;
+    }
+
+    @media (max-width: 480px) {
+      min-width: 100%;
+      max-width: 100vw;
+    }
+  }
 }
 
 hr {
   margin: 2rem 0;
+  border: none;
+  border-top: 2px solid $border-color;
+  opacity: 0.6;
+
+  @media (max-width: 768px) {
+    margin: 1.5rem 0;
+  }
+
+  @media (max-width: 480px) {
+    margin: 1rem 0;
+  }
 }
 
+// Form Section (Step 4)
 .form-section {
   max-width: 400px;
   margin: auto;
+  padding: 1.5rem;
+  width: 100%;
+  background: linear-gradient(135deg, rgba(14, 165, 233, 0.05) 0%, rgba(16, 185, 129, 0.05) 100%);
+  border-radius: 8px;
+  border: 1px solid rgba(14, 165, 233, 0.1);
+
+  @media (max-width: 768px) {
+    max-width: 100%;
+    padding: 1rem;
+  }
+
+  @media (max-width: 480px) {
+    max-width: 100%;
+    padding: 0.75rem;
+  }
+
+  h3 {
+    margin-bottom: 1rem;
+    font-weight: 700;
+    font-size: 1.05rem;
+    color: $text-dark;
+    letter-spacing: 0.3px;
+
+    @media (max-width: 768px) {
+      margin-bottom: 0.75rem;
+      font-size: 1rem;
+    }
+
+    @media (max-width: 480px) {
+      margin-bottom: 0.5rem;
+      font-size: 0.95rem;
+    }
+  }
 }
 
-h3 {
-  margin-bottom: 0.5rem;
-  font-weight: 600;
+.input-field {
+  width: 100%;
+  margin-bottom: 1rem !important;
+  border-radius: 8px;
+  border: 2px solid $border-color;
+  background: $background-white;
+  color: $text-dark;
+  padding: 0.75rem 1rem !important;
+  font-size: 1rem;
+  transition: all 0.3s ease;
+
+  &::placeholder {
+    color: $text-light;
+  }
+
+  &:hover:not(:disabled) {
+    border-color: $primary-light;
+  }
+
+  &:focus {
+    border-color: $primary-color;
+    box-shadow: 0 0 0 3px rgba(14, 165, 233, 0.1);
+  }
+
+  @media (max-width: 768px) {
+    margin-bottom: 0.75rem !important;
+    font-size: 1rem;
+  }
+
+  @media (max-width: 480px) {
+    margin-bottom: 0.5rem !important;
+    font-size: 0.95rem;
+    padding: 0.6rem 0.8rem !important;
+  }
 }
 
 .full-width {
   width: 100%;
-  margin-bottom: 1rem;
+  border-radius: 8px;
+  border: 2px solid $border-color;
+  background: $background-white;
+  color: $text-dark;
+  padding: 0.75rem 1rem !important;
+  transition: all 0.3s ease;
+
+  &::placeholder {
+    color: $text-light;
+  }
+
+  &:hover:not(:disabled) {
+    border-color: $primary-light;
+  }
+
+  &:focus {
+    border-color: $primary-color;
+    box-shadow: 0 0 0 3px rgba(14, 165, 233, 0.1);
+  }
+
+  @media (max-width: 480px) {
+    font-size: 0.95rem;
+  }
 }
 
 .mt {
   margin-top: 1.5rem;
+
+  @media (max-width: 768px) {
+    margin-top: 1.25rem;
+  }
+
+  @media (max-width: 480px) {
+    margin-top: 1rem;
+  }
 }
 
+// Navigation Buttons
+.navigation-buttons {
+  display: flex;
+  gap: 1rem;
+  padding-top: 1.5rem;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+
+  @media (max-width: 768px) {
+    gap: 0.75rem;
+    padding-top: 1.25rem;
+  }
+
+  @media (max-width: 480px) {
+    gap: 0.5rem;
+    padding-top: 1rem;
+    flex-direction: column;
+
+    p-button {
+      width: 100%;
+
+      ::ng-deep button {
+        width: 100%;
+      }
+    }
+  }
+
+  &.justify-end {
+    justify-content: flex-end;
+
+    @media (max-width: 480px) {
+      justify-content: stretch;
+    }
+  }
+
+  &.justify-between {
+    justify-content: space-between;
+
+    @media (max-width: 480px) {
+      justify-content: stretch;
+    }
+  }
+
+  &.justify-start {
+    justify-content: flex-start;
+
+    @media (max-width: 480px) {
+      justify-content: stretch;
+    }
+  }
+
+  p-button {
+    ::ng-deep {
+      button {
+        border-radius: 8px;
+        font-weight: 600;
+        padding: 0.75rem 1.5rem !important;
+        transition: all 0.3s ease;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+        font-size: 1rem;
+
+        &.p-button-default {
+          background: $primary-color;
+          border: none;
+          color: white;
+
+          &:hover {
+            background: $primary-dark;
+            box-shadow: 0 6px 16px rgba(14, 165, 233, 0.4);
+            transform: translateY(-2px);
+          }
+
+          &:active {
+            transform: translateY(0);
+          }
+        }
+
+        &.p-button-secondary {
+          background: $background-light;
+          border: 2px solid $border-color;
+          color: $text-dark;
+
+          &:hover {
+            background: $background-white;
+            border-color: $text-light;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+          }
+        }
+
+        @media (max-width: 480px) {
+          padding: 0.65rem 1.25rem !important;
+          font-size: 0.95rem;
+        }
+      }
+    }
+  }
+}
+
+// PrimeNG Component Adjustments
 .p-inputtext,
 .p-inputtextarea,
 .p-dropdown {
-  border-radius: 0;
-  border: 1.5px solid #000;
+  border-radius: 8px;
+  border: 2px solid $border-color;
+  width: 100%;
+  background: $background-white;
+  color: $text-dark;
+  padding: 0.75rem 1rem !important;
+  transition: all 0.3s ease;
+
+  &::placeholder {
+    color: $text-light;
+  }
+
+  &:hover:not(:disabled) {
+    border-color: $primary-light;
+  }
+
+  &:focus {
+    border-color: $primary-color;
+    box-shadow: 0 0 0 3px rgba(14, 165, 233, 0.1);
+  }
+
+  @media (max-width: 480px) {
+    font-size: 0.95rem;
+  }
+}
+
+::ng-deep {
+  .p-select {
+    width: 100%;
+    border-radius: 8px;
+    border: 2px solid $border-color;
+    background: $background-white;
+    color: $text-dark;
+    transition: all 0.3s ease;
+
+    &:hover:not(.p-disabled) {
+      border-color: $primary-light;
+    }
+
+    &.p-focus {
+      border-color: $primary-color;
+      box-shadow: 0 0 0 3px rgba(14, 165, 233, 0.1);
+    }
+
+    @media (max-width: 480px) {
+      font-size: 0.95rem;
+    }
+
+    .p-select-label {
+      color: $text-dark;
+    }
+
+    .p-select-trigger {
+      background: $primary-color;
+      color: white;
+      border-radius: 6px;
+
+      &:hover {
+        background: $primary-dark;
+      }
+    }
+  }
+
+  .p-stepper {
+    .p-stepper-list {
+      flex-wrap: wrap;
+
+      @media (max-width: 768px) {
+        gap: 0.5rem;
+      }
+
+      @media (max-width: 480px) {
+        gap: 0.3rem;
+      }
+    }
+
+    .p-stepper-content {
+      padding: 0.5rem;
+
+      @media (max-width: 768px) {
+        padding: 0.4rem;
+      }
+
+      @media (max-width: 480px) {
+        padding: 0.25rem;
+      }
+    }
+  }
+
+  .p-inputnumber {
+    width: 100%;
+    border-radius: 8px;
+
+    .p-inputnumber-input {
+      width: 100%;
+      border-radius: 6px;
+    }
+  }
+
+  .p-button:focus {
+    box-shadow: 0 0 0 0.2rem rgba(14, 165, 233, 0.25);
+  }
+
+  textarea.p-inputtextarea {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    line-height: 1.5;
+    resize: vertical;
+    min-height: 100px;
+  }
 }
