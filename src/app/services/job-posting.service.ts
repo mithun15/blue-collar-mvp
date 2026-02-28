@@ -5,8 +5,8 @@ import { map } from 'rxjs';
 
 @Injectable({ providedIn: 'root' })
 export class JobPostingService {
-  // private _baseUrl = 'https://blue-collar-api.onrender.com/';
-  private _baseUrl = 'http://localhost:3000/';
+  private _baseUrl = 'https://blue-collar-api.onrender.com/';
+  // private _baseUrl = 'http://localhost:3000/';
   private _http = inject(HttpClient);
 
   public createJobPosting(job: JobPostingModel) {

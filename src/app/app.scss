@@ -9,6 +9,12 @@ $background-light: #f9fafb;
 $background-white: #ffffff;
 
 p-menubar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1000;
+  width: 100%;
   padding-left: 15%;
   padding-right: 15%;
 
@@ -35,6 +41,27 @@ p-menubar {
         }
       }
     }
+  }
+}
+
+// ...existing code...
+
+// Router outlet
+router-outlet + p-divider {
+  margin-top: calc(3rem + 60px); // 60px approximate menubar height
+}
+
+// Ensure content accounts for fixed menubar
+:host ::ng-deep {
+  app-root {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+  }
+
+  router-outlet {
+    margin-top: 60px;
+    flex: 1;
   }
 }
 
