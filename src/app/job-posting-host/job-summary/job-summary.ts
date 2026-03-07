@@ -32,9 +32,10 @@ export class JobSummary {
       alert('कृपया नियम व शर्तें स्वीकार करें');
       return;
     }
-    this._jobPostingService.createJobPosting(this.jobPostingForm.value as any).subscribe(() => {
-      this._router.navigate(['/worker-notification']);
-    });
+    // this._jobPostingService.createJobPosting(this.jobPostingForm.value as any).subscribe(() => {
+    //   this._router.navigate(['/worker-notification']);
+    // });
+    this._router.navigate(['/worker-notification']);
     console.log(this.jobPostingForm);
   }
 }
