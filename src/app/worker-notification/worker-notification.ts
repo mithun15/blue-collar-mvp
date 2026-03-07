@@ -74,7 +74,7 @@ export class WorkerNotification implements OnInit {
     const mockWorkers: Worker[] = [
       {
         id: 'w1',
-        name: 'राज कुमार',
+        name: 'गोकुल पंडित',
         phone: '+91-9876543210',
         skills: ['painting', 'construction'],
         rating: 4.5,
@@ -83,7 +83,7 @@ export class WorkerNotification implements OnInit {
       },
       {
         id: 'w2',
-        name: 'विजय सिंह',
+        name: 'गब्बर सिंह',
         phone: '+91-9876543211',
         skills: ['construction', 'excavation'],
         rating: 4.2,
@@ -92,7 +92,7 @@ export class WorkerNotification implements OnInit {
       },
       {
         id: 'w3',
-        name: 'अमित पटेल',
+        name: 'लोटिया पठान',
         phone: '+91-9876543212',
         skills: ['painting'],
         rating: 4.8,
@@ -101,7 +101,7 @@ export class WorkerNotification implements OnInit {
       },
       {
         id: 'w4',
-        name: 'मोहन वर्मा',
+        name: 'कांचा चीना',
         phone: '+91-9876543213',
         skills: ['construction'],
         rating: 3.9,
@@ -125,9 +125,7 @@ export class WorkerNotification implements OnInit {
     const lowerQuery = query.toLowerCase();
 
     const filtered = this.eligibleWorkers().filter(
-      (worker) =>
-        worker.name.toLowerCase().includes(lowerQuery) ||
-        worker.phone.includes(query)
+      (worker) => worker.name.toLowerCase().includes(lowerQuery) || worker.phone.includes(query),
     );
 
     this.filteredWorkers.set(filtered);
@@ -150,9 +148,7 @@ export class WorkerNotification implements OnInit {
    * Select all filtered workers
    */
   selectAllWorkers(): void {
-    const allIds = new Set(
-      this.filteredWorkers().map((w) => w.id)
-    );
+    const allIds = new Set(this.filteredWorkers().map((w) => w.id));
     this.selectedWorkers.set(allIds);
   }
 

@@ -54,8 +54,8 @@
 
       <div class="all-mode-description">
         <p>
-          <strong>यह क्या करता है:</strong> सभी {{ eligibleWorkers().length }} उपलब्ध कर्मचारियों को एक संदेश भेजा जाएगा
-          जो आपके कौशल आवश्यकताओं को पूरा करते हैं।
+          <strong>यह क्या करता है:</strong> सभी {{ eligibleWorkers().length }} उपलब्ध कर्मचारियों को
+          एक संदेश भेजा जाएगा जो आपके कौशल आवश्यकताओं को पूरा करते हैं।
         </p>
       </div>
 
@@ -64,7 +64,12 @@
         (click)="sendToAllEligible()"
         [disabled]="isLoading() || eligibleWorkers().length === 0"
       >
-        <i class="pi" [class.pi-spinner]="isLoading()" [class.pi-spin]="isLoading()" [class.pi-send]="!isLoading()"></i>
+        <i
+          class="pi"
+          [class.pi-spinner]="isLoading()"
+          [class.pi-spin]="isLoading()"
+          [class.pi-send]="!isLoading()"
+        ></i>
         <span>{{ isLoading() ? 'भेजा जा रहा है...' : 'सभी को संदेश भेजें' }}</span>
       </button>
     </div>
@@ -96,7 +101,11 @@
             <i class="pi pi-check"></i>
             सभी चुनें
           </button>
-          <button class="selection-btn" (click)="deselectAllWorkers()" [disabled]="selectedWorkers().size === 0">
+          <button
+            class="selection-btn"
+            (click)="deselectAllWorkers()"
+            [disabled]="selectedWorkers().size === 0"
+          >
             <i class="pi pi-times"></i>
             सभी हटाएं
           </button>
@@ -176,8 +185,15 @@
         (click)="sendToSelectedWorkers()"
         [disabled]="isLoading() || selectedWorkers().size === 0"
       >
-        <i class="pi" [class.pi-spinner]="isLoading()" [class.pi-spin]="isLoading()" [class.pi-send]="!isLoading()"></i>
-        <span>{{ isLoading() ? 'भेजा जा रहा है...' : `${selectedWorkers().size} को संदेश भेजें` }}</span>
+        <i
+          class="pi"
+          [class.pi-spinner]="isLoading()"
+          [class.pi-spin]="isLoading()"
+          [class.pi-send]="!isLoading()"
+        ></i>
+        <span>{{
+          isLoading() ? 'भेजा जा रहा है...' : `${selectedWorkers().size} को संदेश भेजें`
+        }}</span>
       </button>
     </div>
   }
