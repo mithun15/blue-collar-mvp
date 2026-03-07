@@ -1,0 +1,194 @@
+<div class="notification-container">
+  <!-- Header -->
+  <div class="notification-header">
+    <h2 class="notification-title">कर्मचारियों को सूचित करें</h2>
+    <p class="notification-subtitle">
+      {{ requiredSkills.join(', ') }} कौशल वाले सभी उपलब्ध कर्मचारियों को चुनें या खोजें
+    </p>
+  </div>
+
+  <!-- Mode Selection -->
+  <div class="mode-selection">
+    <button
+      class="mode-btn"
+      [class.active]="notificationMode() === 'all'"
+      (click)="notificationMode.set('all')"
+    >
+      <i class="pi pi-check-circle"></i>
+      <span>सभी को संदेश भेजें</span>
+    </button>
+    <button
+      class="mode-btn"
+      [class.active]="notificationMode() === 'search'"
+      (click)="notificationMode.set('search')"
+    >
+      <i class="pi pi-search"></i>
+      <span>खोजें और चुनें</span>
+    </button>
+  </div>
+
+  <!-- Mode 1: Send to All Eligible -->
+  @if (notificationMode() === 'all') {
+    <div class="mode-content all-mode">
+      <div class="eligible-summary">
+        <div class="summary-card">
+          <div class="summary-icon">
+            <i class="pi pi-users"></i>
+          </div>
+          <div class="summary-info">
+            <h3>कुल उपलब्ध कर्मचारी</h3>
+            <p class="summary-number">{{ eligibleWorkers().length }}</p>
+          </div>
+        </div>
+
+        <div class="summary-card">
+          <div class="summary-icon">
+            <i class="pi pi-briefcase"></i>
+          </div>
+          <div class="summary-info">
+            <h3>आवश्यक कौशल</h3>
+            <p class="summary-text">{{ requiredSkills.join(', ') }}</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="all-mode-description">
+        <p>
+          <strong>यह क्या करता है:</strong> सभी {{ eligibleWorkers().length }} उपलब्ध कर्मचारियों को एक संदेश भेजा जाएगा
+          जो आपके कौशल आवश्यकताओं को पूरा करते हैं।
+        </p>
+      </div>
+
+      <button
+        class="action-btn primary-btn send-all-btn"
+        (click)="sendToAllEligible()"
+        [disabled]="isLoading() || eligibleWorkers().length === 0"
+      >
+        <i class="pi" [class.pi-spinner]="isLoading()" [class.pi-spin]="isLoading()" [class.pi-send]="!isLoading()"></i>
+        <span>{{ isLoading() ? 'भेजा जा रहा है...' : 'सभी को संदेश भेजें' }}</span>
+      </button>
+    </div>
+  }
+
+  <!-- Mode 2: Search and Select -->
+  @if (notificationMode() === 'search') {
+    <div class="mode-content search-mode">
+      <!-- Search Bar -->
+      <div class="search-section">
+        <div class="search-input-wrapper">
+          <i class="pi pi-search search-icon"></i>
+          <input
+            type="text"
+            class="search-input"
+            placeholder="नाम या फोन नंबर से खोजें..."
+            [value]="searchQuery()"
+            (input)="filterWorkers($event.target.value)"
+          />
+        </div>
+
+        <!-- Selection Actions -->
+        <div class="selection-actions">
+          <button
+            class="selection-btn"
+            (click)="selectAllWorkers()"
+            [disabled]="filteredWorkers().length === 0"
+          >
+            <i class="pi pi-check"></i>
+            सभी चुनें
+          </button>
+          <button class="selection-btn" (click)="deselectAllWorkers()" [disabled]="selectedWorkers().size === 0">
+            <i class="pi pi-times"></i>
+            सभी हटाएं
+          </button>
+        </div>
+      </div>
+
+      <!-- Workers Table -->
+      <div class="workers-section">
+        @if (isLoading()) {
+          <div class="loading-state">
+            <i class="pi pi-spin pi-spinner"></i>
+            <p>कर्मचारी लोड किए जा रहे हैं...</p>
+          </div>
+        } @else if (filteredWorkers().length === 0) {
+          <div class="empty-state">
+            <i class="pi pi-inbox"></i>
+            <p>{{ searchQuery() ? 'कोई कर्मचारी नहीं मिला' : 'कोई उपलब्ध कर्मचारी नहीं' }}</p>
+          </div>
+        } @else {
+          <div class="workers-list">
+            @for (worker of filteredWorkers(); track worker.id) {
+              <div class="worker-card">
+                <div class="worker-selection">
+                  <p-checkbox
+                    [(ngModel)]="selectedWorkers"
+                    [value]="worker.id"
+                    [binary]="true"
+                    (onChange)="toggleWorkerSelection(worker.id)"
+                  ></p-checkbox>
+                </div>
+
+                <div class="worker-info">
+                  <div class="worker-name-rating">
+                    <h4 class="worker-name">{{ worker.name }}</h4>
+                    <span class="worker-rating">{{ getRatingDisplay(worker.rating) }}</span>
+                  </div>
+                  <p class="worker-phone">
+                    <i class="pi pi-phone"></i>
+                    {{ worker.phone }}
+                  </p>
+                  <div class="worker-skills">
+                    <span class="skill-badge" *ngFor="let skill of worker.skills">{{ skill }}</span>
+                  </div>
+                </div>
+
+                <div class="worker-status">
+                  @if (worker.isAvailable) {
+                    <span class="status-available">
+                      <i class="pi pi-check-circle"></i>
+                      उपलब्ध
+                    </span>
+                  } @else {
+                    <span class="status-unavailable">
+                      <i class="pi pi-times-circle"></i>
+                      अनुपलब्ध
+                    </span>
+                  }
+                </div>
+              </div>
+            }
+          </div>
+        }
+      </div>
+
+      <!-- Selection Summary -->
+      @if (selectedWorkers().size > 0) {
+        <div class="selection-summary">
+          <p class="selected-count">
+            <strong>{{ selectedWorkers().size }}</strong> कर्मचारी चुने गए हैं
+          </p>
+        </div>
+      }
+
+      <!-- Send Button -->
+      <button
+        class="action-btn primary-btn send-selected-btn"
+        (click)="sendToSelectedWorkers()"
+        [disabled]="isLoading() || selectedWorkers().size === 0"
+      >
+        <i class="pi" [class.pi-spinner]="isLoading()" [class.pi-spin]="isLoading()" [class.pi-send]="!isLoading()"></i>
+        <span>{{ isLoading() ? 'भेजा जा रहा है...' : `${selectedWorkers().size} को संदेश भेजें` }}</span>
+      </button>
+    </div>
+  }
+
+  <!-- Footer Actions -->
+  <div class="notification-footer">
+    <button class="action-btn secondary-btn" (click)="cancel()">
+      <i class="pi pi-arrow-left"></i>
+      वापस जाएं
+    </button>
+  </div>
+</div>
+
+<p-toast position="top-right"></p-toast>

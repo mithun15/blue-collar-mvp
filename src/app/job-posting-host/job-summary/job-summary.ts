@@ -33,7 +33,7 @@ export class JobSummary {
       return;
     }
     this._jobPostingService.createJobPosting(this.jobPostingForm.value as any).subscribe(() => {
-      this._router.navigate(['/employer-dashboard']);
+      this._router.navigate(['/worker-notification']);
     });
     console.log(this.jobPostingForm);
   }

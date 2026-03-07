@@ -11,6 +11,7 @@ import { EmployerDashboard } from './employer-dashboard/employer-dashboard';
 import { JobPostingSteps } from './job-posting-host/job-posting-steps/job-posting-steps';
 import { JobSummary } from './job-posting-host/job-summary/job-summary';
 import { JobPostingHost } from './job-posting-host/job-posting-host';
+import { WorkerNotification } from './worker-notification/worker-notification';
 
 export const routes: Routes = [
   {
@@ -71,5 +72,9 @@ export const routes: Routes = [
         component: JobSummary,
       },
     ],
+  },
+  {
+    path: 'worker-notification',
+    component: WorkerNotification,
   },
 ];
