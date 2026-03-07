@@ -36,16 +36,28 @@ $background-white: #ffffff;
 
 // Header
 .notification-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 2rem;
   margin-bottom: 2rem;
-  text-align: center;
 
   @media (max-width: 768px) {
+    gap: 1.5rem;
     margin-bottom: 1.5rem;
   }
 
   @media (max-width: 480px) {
-    margin-bottom: 1rem;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 1rem;
+    margin-bottom: 1.25rem;
   }
+}
+
+.header-content {
+  flex: 1;
+  min-width: 0;
 }
 
 .notification-title {
@@ -65,6 +77,149 @@ $background-white: #ffffff;
   color: $text-light;
   margin: 0;
   line-height: 1.5;
+}
+
+// Header Timer
+.header-timer {
+  position: relative;
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s ease;
+
+  &.timer-warning {
+    filter: drop-shadow(0 0 12px rgba(239, 68, 68, 0.3));
+
+    .circular-timer-small {
+      .circular-progress {
+        .progress-fill {
+          stroke: $error-color;
+        }
+      }
+
+      .timer-center {
+        .timer-display {
+          color: $error-color;
+          animation: pulse 1.5s ease-in-out infinite;
+        }
+      }
+    }
+  }
+}
+
+.timer-warning-badge {
+  position: absolute;
+  top: -8px;
+  right: -8px;
+  width: 24px;
+  height: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: $error-color;
+  border-radius: 50%;
+  color: white;
+  font-size: 0.85rem;
+  margin: 0;
+  animation: pulse 1.5s ease-in-out infinite;
+
+  @media (max-width: 480px) {
+    width: 20px;
+    height: 20px;
+    font-size: 0.7rem;
+    top: -6px;
+    right: -6px;
+  }
+}
+
+.circular-timer-small {
+  position: relative;
+  width: 100px;
+  height: 100px;
+  flex-shrink: 0;
+
+  @media (max-width: 768px) {
+    width: 90px;
+    height: 90px;
+  }
+
+  @media (max-width: 480px) {
+    width: 80px;
+    height: 80px;
+  }
+}
+
+.circular-progress {
+  width: 100%;
+  height: 100%;
+  transform: rotate(-90deg);
+  filter: drop-shadow(0 2px 10px rgba(0, 0, 0, 0.12));
+  transition: filter 0.3s ease;
+
+  .progress-background {
+    fill: none;
+    stroke: $border-color;
+    stroke-width: 2.5;
+
+    @media (max-width: 768px) {
+      stroke-width: 2;
+    }
+
+    @media (max-width: 480px) {
+      stroke-width: 2;
+    }
+  }
+
+  .progress-fill {
+    fill: none;
+    stroke: $primary-color;
+    stroke-width: 2.5;
+    stroke-linecap: round;
+    stroke-dasharray: 339.3; // 2 * π * 54
+    stroke-dashoffset: 0;
+    transition: stroke-dashoffset 1s linear, stroke 0.3s ease;
+
+    @media (max-width: 768px) {
+      stroke-width: 2;
+    }
+
+    @media (max-width: 480px) {
+      stroke-width: 2;
+    }
+  }
+}
+
+.timer-center {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.timer-display {
+  font-size: clamp(1rem, 3vw, 1.3rem);
+  font-weight: 800;
+  color: $primary-color;
+  margin: 0;
+  font-family: 'Courier New', monospace;
+  letter-spacing: 0.5px;
+  line-height: 1;
+  transition: color 0.3s ease;
+
+  @media (max-width: 768px) {
+    font-size: 1rem;
+  }
+
+  @media (max-width: 480px) {
+    font-size: 0.9rem;
+  }
 }
 
 // Mode Selection
