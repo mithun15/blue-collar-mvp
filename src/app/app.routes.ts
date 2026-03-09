@@ -12,6 +12,7 @@ import { JobPostingSteps } from './job-posting-host/job-posting-steps/job-postin
 import { JobSummary } from './job-posting-host/job-summary/job-summary';
 import { JobPostingHost } from './job-posting-host/job-posting-host';
 import { WorkerNotification } from './worker-notification/worker-notification';
+import { WorkerSearch } from './worker-search/worker-search';
 
 export const routes: Routes = [
   {
@@ -76,5 +77,9 @@ export const routes: Routes = [
   {
     path: 'worker-notification',
     component: WorkerNotification,
+  },
+  {
+    path: 'worker-search',
+    component: WorkerSearch,
   },
 ];

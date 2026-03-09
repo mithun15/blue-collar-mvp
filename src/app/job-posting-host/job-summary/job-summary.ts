@@ -33,9 +33,9 @@ export class JobSummary {
       return;
     }
     // this._jobPostingService.createJobPosting(this.jobPostingForm.value as any).subscribe(() => {
-    //   this._router.navigate(['/worker-notification']);
+    //   this._router.navigate(['/worker-search']);
     // });
-    this._router.navigate(['/worker-notification']);
+    this._router.navigate(['/worker-search']);
     console.log(this.jobPostingForm);
   }
 }

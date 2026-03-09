@@ -1,0 +1,51 @@
+<div class="worker-search-container">
+  <!-- Animated Circle Background -->
+  <div class="search-circle-bg">
+    <div class="circle circle-1"></div>
+    <div class="circle circle-2"></div>
+    <div class="circle circle-3"></div>
+  </div>
+
+  <!-- Main Content -->
+  <div class="search-content">
+    <!-- Circular Progress Indicator -->
+    <div class="progress-circle-container">
+      <svg class="progress-circle" viewBox="0 0 120 120">
+        <!-- Background circle -->
+        <circle cx="60" cy="60" r="54" class="progress-background" />
+        <!-- Progress circle -->
+        <circle
+          cx="60"
+          cy="60"
+          r="54"
+          class="progress-fill"
+          [style.strokeDashoffset]="339.3 * (1 - searchProgress() / 100)"
+        />
+      </svg>
+
+      <!-- Center Content -->
+      <div class="progress-center">
+        <div class="progress-percentage">{{ Math.round(searchProgress()) }}%</div>
+        <div class="progress-label">खोज रहे हैं</div>
+      </div>
+    </div>
+
+    <!-- Message -->
+    <div class="search-message-container">
+      <h2 class="search-title">कर्मचारी खोज रहे हैं</h2>
+      <p class="search-message">{{ searchMessage() }}</p>
+    </div>
+
+    <!-- Animated Dots -->
+    <div class="loading-dots">
+      <span class="dot dot-1"></span>
+      <span class="dot dot-2"></span>
+      <span class="dot dot-3"></span>
+    </div>
+  </div>
+
+  <!-- Bottom Info -->
+  <div class="search-info">
+    <p>यह प्रक्रिया आमतौर पर कुछ सेकंड में पूरी हो जाती है</p>
+  </div>
+</div>

@@ -1,36 +1,10 @@
 <div class="notification-container">
-  <!-- Header with Timer -->
+  <!-- Header -->
   <div class="notification-header">
-    <div class="header-content">
-      <h2 class="notification-title">कर्मचारियों को सूचित करें</h2>
-      <p class="notification-subtitle">
-        {{ requiredSkills.join(', ') }} कौशल वाले सभी उपलब्ध कर्मचारियों को चुनें या खोजें
-      </p>
-    </div>
-
-    <!-- Timer on Top Right -->
-    <div class="header-timer" [class.timer-warning]="timerSeconds() <= 60">
-      <div class="circular-timer-small">
-        <svg class="circular-progress" viewBox="0 0 120 120">
-          <circle cx="60" cy="60" r="54" class="progress-background" />
-          <circle
-            cx="60"
-            cy="60"
-            r="54"
-            class="progress-fill"
-            [style.strokeDashoffset]="339.3 * (1 - timerSeconds() / 600)"
-          />
-        </svg>
-        <div class="timer-center">
-          <div class="timer-display">{{ timerDisplay() }}</div>
-        </div>
-      </div>
-      @if (timerSeconds() <= 60) {
-        <p class="timer-warning-badge">
-          <i class="pi pi-exclamation-circle"></i>
-        </p>
-      }
-    </div>
+    <h2 class="notification-title">कर्मचारियों को सूचित करें</h2>
+    <p class="notification-subtitle">
+      {{ requiredSkills.join(', ') }} कौशल वाले सभी उपलब्ध कर्मचारियों को चुनें या खोजें
+    </p>
   </div>
 
   <!-- Mode Selection -->
