@@ -2,10 +2,16 @@
 // @import "assets/layout/layout.scss";
 // @import "primeng/resources/themes/aura-light-blue/theme.css";
 @import "primeicons/primeicons.css";
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;500;600;700&display=swap');
+
+* {
+    font-family: 'Noto Sans', sans-serif;
+}
 
 body {
     background: aliceblue;
     margin: 0px;
+    font-family: 'Noto Sans', sans-serif;
 }
 
 .full-width {

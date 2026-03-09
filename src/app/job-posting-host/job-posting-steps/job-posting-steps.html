@@ -10,12 +10,13 @@
       <p-step-panel [value]="1">
         <ng-template #content let-activateCallback="activateCallback">
           <div class="step-1-container">
+            <div class="label-text">कौन सी स्किल चाहिए ?</div>
             <div class="skill-input-wrapper">
               <p-select
                 [options]="skills"
                 optionLabel="name"
                 optionValue="code"
-                placeholder="Skill required"
+                placeholder="स्किल चुनें"
                 class="w-full"
                 formControlName="skill"
               />

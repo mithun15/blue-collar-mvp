@@ -77,10 +77,10 @@ export class JobPostingSteps implements OnInit {
 
   ngOnInit(): void {
     this.skills = [
-      { name: 'Worker', code: 'WOR' },
-      { name: 'Helper', code: 'HEL' },
-      { name: 'Plumber', code: 'PLU' },
-      { name: 'Electrician', code: 'ELE' },
+      { name: 'मजदूर', code: 'WOR' },
+      { name: 'सहायक', code: 'HEL' },
+      { name: 'प्लम्बर', code: 'PLU' },
+      { name: 'इलेक्ट्रीशियन', code: 'ELE' },
     ];
   }
 

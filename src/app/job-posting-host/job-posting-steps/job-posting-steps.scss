@@ -11,6 +11,9 @@ $border-color: #e5e7eb;
 $background-light: #f9fafb;
 $background-white: #ffffff;
 
+// ===== FONT IMPORT =====
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;500;600;700&display=swap');
+
 // ===== SPACING & SIZING =====
 $spacing-xs: 0.25rem;
 $spacing-sm: 0.5rem;
@@ -25,6 +28,7 @@ $spacing-xl: 2rem;
   padding: 0.5rem;
   background: linear-gradient(135deg, #f0f9ff 0%, #f0fdfa 100%);
   border-radius: 12px;
+  font-family: 'Noto Sans', sans-serif;
 
   @media (max-width: 768px) {
     padding: 0.25rem;
@@ -40,6 +44,7 @@ $spacing-xl: 2rem;
   width: 100%;
   max-width: 50rem;
   min-width: 100%;
+  font-family: 'Noto Sans', sans-serif;
 
   @media (max-width: 768px) {
     max-width: 100%;
@@ -63,23 +68,31 @@ $spacing-xl: 2rem;
           .p-step-header {
             .p-step-header-action {
               background: $background-light;
-              border: 2px solid $border-color;
+              border: 3px solid $border-color;
               color: $text-light;
               border-radius: 50%;
               transition: all 0.3s ease;
+              width: 50px !important;
+              height: 50px !important;
+              font-size: 1.25rem !important;
+              font-weight: 700 !important;
+              display: flex !important;
+              align-items: center !important;
+              justify-content: center !important;
 
               &:hover:not(.p-disabled) {
                 background: $primary-light;
                 border-color: $primary-color;
                 color: white;
-                transform: scale(1.1);
+                transform: scale(1.15);
               }
 
               &.p-step-active {
                 background: $primary-color;
                 border-color: $primary-dark;
                 color: white;
-                box-shadow: 0 4px 12px rgba(14, 165, 233, 0.3);
+                box-shadow: 0 4px 16px rgba(14, 165, 233, 0.4);
+                font-size: 1.5rem !important;
               }
             }
 
