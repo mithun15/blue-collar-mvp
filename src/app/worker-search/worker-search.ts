@@ -3,11 +3,12 @@ import { CommonModule } from '@angular/common';
 import { Router } from '@angular/router';
 import { signal } from '@angular/core';
 import { Subject, interval, takeUntil } from 'rxjs';
+import { ButtonModule } from 'primeng/button';
 
 @Component({
   selector: 'app-worker-search',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, ButtonModule],
   templateUrl: './worker-search.html',
   styleUrl: './worker-search.scss',
 })
@@ -48,6 +49,15 @@ export class WorkerSearch implements OnInit, OnDestroy {
   ngOnDestroy(): void {
     this.destroy$.next();
     this.destroy$.complete();
+  }
+
+  /**
+   * Stop searching and navigate to next page
+   */
+  stopSearching(): void {
+    this.isSearching.set(false);
+    this.destroy$.next();
+    this._router.navigate(['/worker-notification']);
   }
 
   /**
