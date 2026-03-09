@@ -67,13 +67,16 @@ $background-light: #f9fafb;
   position: relative;
   overflow: hidden;
   padding: 2rem;
+  margin: 0;
 
   @media (max-width: 768px) {
     padding: 1.5rem;
+    margin: 0;
   }
 
   @media (max-width: 480px) {
     padding: 1rem;
+    margin: 0;
   }
 }
 

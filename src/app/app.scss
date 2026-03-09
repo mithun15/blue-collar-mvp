@@ -57,11 +57,14 @@ router-outlet + p-divider {
 :host ::ng-deep {
   app-root {
     display: block;
+    padding: 0;
+    margin: 0;
   }
 
   router-outlet {
     display: block;
     margin-top: 80px;
+    padding: 0;
 
     @media (max-width: 768px) {
       margin-top: 90px;
@@ -69,6 +72,8 @@ router-outlet + p-divider {
 
     @media (max-width: 480px) {
       margin-top: 100px;
+      padding-left: 0;
+      padding-right: 0;
     }
   }
 
@@ -84,9 +89,12 @@ router-outlet + p-divider {
   app-employer-dashboard,
   app-job-posting-host,
   app-top-bar-widget,
-  app-job-posting {
+  app-job-posting,
+  app-worker-notification,
+  app-worker-search {
     display: block;
-    margin-top: 0;
+    margin: 0;
+    padding: 0;
   }
 }
 
