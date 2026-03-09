@@ -10,23 +10,23 @@
       <p-step-panel [value]="1">
         <ng-template #content let-activateCallback="activateCallback">
           <div class="step-1-container">
-            <div class="label-text">कौन सी स्किल चाहिए ?</div>
+            <div class="label-text">{{ 'SKILL_LABEL' | translate }}</div>
             <div class="skill-input-wrapper">
               <p-select
                 [options]="skills"
                 optionLabel="name"
                 optionValue="code"
-                placeholder="स्किल चुनें"
+                [placeholder]="'SKILL_PLACEHOLDER' | translate"
                 class="w-full"
                 formControlName="skill"
               />
             </div>
             <div class="workers-count">
-              <div class="label-text">कितने लोग चाहिए ?</div>
+              <div class="label-text">{{ 'PEOPLE_LABEL' | translate }}</div>
               <div class="button-wrapper">
                 @for (n of peopleOptions; track n) {
                   <p-button
-                    [label]="n.label"
+                    [label]="n.label | translate"
                     [outlined]="selectedPeople !== n.value"
                     (onClick)="peopleSelected(n)"
                     class="people-button"
@@ -35,7 +35,7 @@
               </div>
             </div>
             <div class="wage-section">
-              <div class="label-text">एक की दैनिक मज़दूरी</div>
+              <div class="label-text">{{ 'WAGE_LABEL' | translate }}</div>
               <p-inputnumber
                 [showButtons]="true"
                 buttonLayout="horizontal"
@@ -58,7 +58,7 @@
           </div>
           <div class="navigation-buttons">
             <p-button
-              label="अगला स्टेप"
+              [label]="'NEXT_STEP' | translate"
               icon="pi pi-arrow-right"
               iconPos="right"
               (onClick)="activateCallback(2); print()"
@@ -71,12 +71,12 @@
           <div class="step-2-container">
             <div class="date-section">
               <div class="workers-count">
-                <div class="label-text">कब चाहिए ?</div>
+                <div class="label-text">{{ 'WHEN_LABEL' | translate }}</div>
                 <div class="button-wrapper">
                   @for (n of timeOptions; track n) {
                     <div class="time-button-item">
                       <p-button
-                        [label]="n.label"
+                        [label]="n.label | translate"
                         [outlined]="selectedTime !== n.value"
                         (onClick)="selectedTime = n.value"
                         class="time-button"
@@ -87,7 +87,7 @@
               </div>
               <p-datepicker
                 [showButtonBar]="true"
-                placeholder="तारीख चुने"
+                [placeholder]="'DATE_PLACEHOLDER' | translate"
                 formControlName="date"
                 class="date-picker"
               />
@@ -100,7 +100,7 @@
               (onClick)="activateCallback(1)"
             />
             <p-button
-              label="अगला स्टेप"
+              [label]="'NEXT_STEP' | translate"
               icon="pi pi-arrow-right"
               iconPos="right"
               (onClick)="activateCallback(3); print()"
@@ -112,12 +112,12 @@
         <ng-template #content let-activateCallback="activateCallback">
           <div class="step-3-container">
             <div class="time-section">
-              <h3>कितने बजे से</h3>
+              <h3>{{ 'FROM_TIME_LABEL' | translate }}</h3>
 
               <div class="time-box">
                 <p-datepicker
                   [showButtonBar]="true"
-                  placeholder="समय चुने"
+                  [placeholder]="'TIME_PLACEHOLDER' | translate"
                   formControlName="fromTime"
                   [timeOnly]="true"
                   class="time-picker"
@@ -130,12 +130,12 @@
             <hr />
 
             <div class="time-section">
-              <h3>कितने बजे तक</h3>
+              <h3>{{ 'TO_TIME_LABEL' | translate }}</h3>
 
               <div class="time-box">
                 <p-datepicker
                   [showButtonBar]="true"
-                  placeholder="समय चुने"
+                  [placeholder]="'TIME_PLACEHOLDER' | translate"
                   formControlName="toTime"
                   [timeOnly]="true"
                   class="time-picker"
@@ -153,7 +153,7 @@
               (onClick)="activateCallback(2)"
             />
             <p-button
-              label="अगला स्टेप"
+              [label]="'NEXT_STEP' | translate"
               icon="pi pi-arrow-right"
               iconPos="right"
               (onClick)="activateCallback(4); print()"
@@ -164,12 +164,12 @@
       <p-step-panel [value]="4">
         <ng-template #content let-activateCallback="activateCallback">
           <div class="form-section" formGroupName="contact">
-            <h3>संपर्क किससे करना है</h3>
+            <h3>{{ 'CONTACT_LABEL' | translate }}</h3>
 
             <input
               pInputText
               type="text"
-              placeholder="नाम"
+              [placeholder]="'NAME_PLACEHOLDER' | translate"
               class="full-width input-field"
               formControlName="name"
             />
@@ -177,17 +177,17 @@
             <input
               pInputText
               type="tel"
-              placeholder="फ़ोन नंबर"
+              [placeholder]="'PHONE_PLACEHOLDER' | translate"
               class="full-width input-field"
               formControlName="phone"
             />
 
-            <h3 class="mt">कहाँ आना है ?</h3>
+            <h3 class="mt">{{ 'ADDRESS_LABEL' | translate }}</h3>
 
             <textarea
               pInputTextarea
               rows="4"
-              placeholder="पूरा एड्रेस लिखें"
+              [placeholder]="'ADDRESS_PLACEHOLDER' | translate"
               class="full-width input-field"
               formControlName="address"
             ></textarea>
@@ -195,17 +195,22 @@
             <input
               pInputText
               type="text"
-              placeholder="आस पास क्या है/अन्य जानकारी"
+              [placeholder]="'LANDMARK_PLACEHOLDER' | translate"
               class="full-width input-field"
               formControlName="landmark"
             />
 
             <p-select
               [options]="cities"
-              placeholder="शहर का नाम"
+              optionLabel="label"
+              [placeholder]="'CITY_PLACEHOLDER' | translate"
               class="full-width"
               formControlName="city"
-            ></p-select>
+            >
+              <ng-template #item let-option>
+                {{ option.label | translate }}
+              </ng-template>
+            </p-select>
           </div>
 
           <div class="navigation-buttons justify-start">
@@ -216,7 +221,7 @@
               (onClick)="activateCallback(3)"
             />
             <p-button
-              label="पुष्टि करें"
+              [label]="'CONFIRM' | translate"
               icon="pi pi-arrow-right"
               iconPos="right"
               (click)="confirm()"

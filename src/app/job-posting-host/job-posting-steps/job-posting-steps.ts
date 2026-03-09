@@ -6,8 +6,11 @@ import { SelectModule } from 'primeng/select';
 import { StepperModule } from 'primeng/stepper';
 import { DatePickerModule } from 'primeng/datepicker';
 import { SelectButtonModule } from 'primeng/selectbutton';
+import { InputTextModule } from 'primeng/inputtext';
+import { TextareaModule } from 'primeng/textarea';
 import { Router } from '@angular/router';
 import { JobPosting } from '../job-posting';
+import { TranslateModule } from '@ngx-translate/core';
 
 interface Skill {
   name: string;
@@ -25,6 +28,9 @@ interface Skill {
     ReactiveFormsModule,
     DatePickerModule,
     SelectButtonModule,
+    InputTextModule,
+    TextareaModule,
+    TranslateModule,
   ],
   templateUrl: './job-posting-steps.html',
   styleUrl: './job-posting-steps.scss',
@@ -44,30 +50,30 @@ export class JobPostingSteps implements OnInit {
     { label: '8', value: 8 },
     { label: '9', value: 9 },
     { label: '10', value: 10 },
-    { label: '10 से ज्यादा', value: '10+' },
+    { label: 'MORE_THAN_10', value: '10+' },
   ];
 
   timeOptions = [
-    { label: 'आज', value: 'today' },
-    { label: 'कल', value: 'tomorrow' },
-    { label: 'पारसो', value: 'dayaftertomorrow' },
+    { label: 'TODAY', value: 'today' },
+    { label: 'TOMORROW', value: 'tomorrow' },
+    { label: 'DAY_AFTER_TOMORROW', value: 'dayaftertomorrow' },
   ];
 
   fromTime = { hour: 9, minute: 0, period: 'सुबह' };
   toTime = { hour: 6, minute: 0, period: 'शाम' };
 
   periods = [
-    { label: 'सुबह', value: 'morning' },
-    { label: 'दोपहर', value: 'afternoon' },
-    { label: 'शाम', value: 'evening' },
-    { label: 'रात', value: 'night' },
+    { label: 'MORNING', value: 'morning' },
+    { label: 'AFTERNOON', value: 'afternoon' },
+    { label: 'EVENING', value: 'evening' },
+    { label: 'NIGHT', value: 'night' },
   ];
 
   cities = [
-    { label: 'दिल्ली', value: 'Delhi' },
-    { label: 'मुंबई', value: 'Mumbai' },
-    { label: 'बेंगलुरु', value: 'Bengaluru' },
-    { label: 'पुणे', value: 'Pune' },
+    { label: 'DELHI', value: 'Delhi' },
+    { label: 'MUMBAI', value: 'Mumbai' },
+    { label: 'BENGALURU', value: 'Bengaluru' },
+    { label: 'PUNE', value: 'Pune' },
   ];
 
   private _router = inject(Router);
