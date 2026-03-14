@@ -9,10 +9,16 @@ export class AuthService {
   private _baseUrl = 'http://localhost:3000/';
   private _http = inject(HttpClient);
 
-  public signIn(mobile: string): Observable<{ data: { loggedIn: boolean; user: User } }> {
+  public signIn({
+    userId,
+    password,
+  }: {
+    userId: string;
+    password: string;
+  }): Observable<{ data: { loggedIn: boolean; user: User } }> {
     return this._http.post<{ data: { loggedIn: boolean; user: User } }>(
       `${this._baseUrl}auth/signin`,
-      { mobile },
+      { userId, password },
     );
   }
 

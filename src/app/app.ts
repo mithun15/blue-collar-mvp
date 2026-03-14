@@ -1,5 +1,5 @@
 import { Component, inject, signal } from '@angular/core';
-import { RouterOutlet } from '@angular/router';
+import { Router, RouterOutlet } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
 import { AvatarModule } from 'primeng/avatar';
 import { ButtonModule } from 'primeng/button';
@@ -17,6 +17,7 @@ export class App {
   currentLanguage = signal<'en' | 'hi'>('hi');
 
   private translate = inject(TranslateService);
+  private router = inject(Router);
 
   constructor() {
     this.translate.addLangs(['hi', 'en']);
@@ -27,5 +28,9 @@ export class App {
   setLanguage(lang: 'en' | 'hi') {
     this.currentLanguage.set(lang);
     this.translate.use(lang);
+  }
+
+  login(): void {
+    this.router.navigate(['/login']);
   }
 }

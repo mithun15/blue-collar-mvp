@@ -12,4 +12,8 @@ import { StyleClassModule } from 'primeng/styleclass';
 })
 export class TopBarWidget {
   public router = inject(Router);
+
+  login(): void {
+    this.router.navigate(['/login']);
+  }
 }

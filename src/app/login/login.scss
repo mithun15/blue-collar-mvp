@@ -1,0 +1,238 @@
+// ===== COLOR VARIABLES =====
+$primary-color: #0ea5e9; // Cyan
+$primary-dark: #0284c7;
+$primary-light: #06b6d4;
+$text-dark: #1f2937;
+$text-light: #6b7280;
+$border-color: #e5e7eb;
+$background-light: #f9fafb;
+$background-white: #ffffff;
+$error-color: #ef4444;
+
+// ===== LOGIN CONTAINER =====
+.login-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  background: linear-gradient(135deg, #f0f9ff 0%, #ecfdf5 100%);
+  padding: 2rem;
+  margin: 0;
+
+  @media (max-width: 768px) {
+    padding: 1.5rem;
+  }
+
+  @media (max-width: 480px) {
+    padding: 1rem;
+  }
+}
+
+// ===== LOGIN CARD =====
+.login-card {
+  width: 100%;
+  max-width: 420px;
+  background: $background-white;
+  border-radius: 16px;
+  padding: 2.5rem 2rem;
+  box-shadow: 0 4px 24px rgba(14, 165, 233, 0.12);
+  border: 1px solid rgba(14, 165, 233, 0.1);
+
+  @media (max-width: 768px) {
+    max-width: 100%;
+    padding: 2rem 1.5rem;
+    border-radius: 12px;
+  }
+
+  @media (max-width: 480px) {
+    max-width: 100%;
+    padding: 1.5rem 1rem;
+    border-radius: 8px;
+  }
+}
+
+// ===== LOGIN HEADER =====
+.login-header {
+  text-align: center;
+  margin-bottom: 2rem;
+
+  @media (max-width: 480px) {
+    margin-bottom: 1.5rem;
+  }
+}
+
+.login-title {
+  font-size: 2rem;
+  font-weight: 700;
+  color: $text-dark;
+  margin: 0 0 0.75rem 0;
+  line-height: 1.2;
+
+  @media (max-width: 768px) {
+    font-size: 1.75rem;
+  }
+
+  @media (max-width: 480px) {
+    font-size: 1.5rem;
+    margin-bottom: 0.5rem;
+  }
+}
+
+.login-subtitle {
+  font-size: 1rem;
+  color: $text-light;
+  margin: 0;
+  font-weight: 500;
+  line-height: 1.5;
+
+  @media (max-width: 480px) {
+    font-size: 0.9rem;
+  }
+}
+
+// ===== LOGIN FORM =====
+.login-form {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  margin-bottom: 2rem;
+
+  @media (max-width: 768px) {
+    gap: 1.25rem;
+    margin-bottom: 1.5rem;
+  }
+
+  @media (max-width: 480px) {
+    gap: 1rem;
+    margin-bottom: 1rem;
+  }
+}
+
+// ===== FORM GROUP =====
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.form-label {
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: $text-dark;
+  display: block;
+
+  @media (max-width: 480px) {
+    font-size: 0.9rem;
+  }
+}
+
+// ===== FORM INPUT =====
+.form-input {
+  padding: 0.875rem 1rem;
+  font-size: 1rem;
+  border: 2px solid $border-color;
+  border-radius: 8px;
+  transition: all 0.3s ease;
+  font-family: 'Noto Sans', sans-serif;
+  background: $background-white;
+
+  &:hover {
+    border-color: $primary-light;
+  }
+
+  &:focus {
+    outline: none;
+    border-color: $primary-color;
+    box-shadow: 0 0 0 3px rgba(14, 165, 233, 0.1);
+  }
+
+  &::placeholder {
+    color: $text-light;
+  }
+
+  @media (max-width: 480px) {
+    padding: 0.75rem 0.875rem;
+    font-size: 0.95rem;
+    border-radius: 6px;
+  }
+}
+
+// ===== CONTINUE BUTTON =====
+.continue-button {
+  margin-top: 0.5rem;
+
+  ::ng-deep {
+    button {
+      width: 100% !important;
+      padding: 0.875rem 1rem !important;
+      font-size: 1rem !important;
+      font-weight: 600 !important;
+      border-radius: 8px !important;
+      background: $primary-color !important;
+      border: none !important;
+      color: white !important;
+      transition: all 0.3s ease !important;
+      font-family: 'Noto Sans', sans-serif !important;
+
+      &:hover:not(:disabled) {
+        background: $primary-dark !important;
+        box-shadow: 0 4px 12px rgba(14, 165, 233, 0.3) !important;
+        transform: translateY(-2px);
+      }
+
+      &:active:not(:disabled) {
+        transform: translateY(0);
+      }
+
+      &:disabled {
+        opacity: 0.6;
+        cursor: not-allowed;
+      }
+
+      @media (max-width: 480px) {
+        padding: 0.75rem 0.875rem !important;
+        font-size: 0.95rem !important;
+        border-radius: 6px !important;
+      }
+    }
+  }
+}
+
+// ===== LOGIN FOOTER =====
+.login-footer {
+  text-align: center;
+  border-top: 1px solid $border-color;
+  padding-top: 1.5rem;
+
+  @media (max-width: 480px) {
+    padding-top: 1rem;
+  }
+}
+
+.footer-text {
+  font-size: 0.9rem;
+  color: $text-light;
+  margin: 0;
+  line-height: 1.5;
+
+  @media (max-width: 480px) {
+    font-size: 0.85rem;
+  }
+}
+
+.footer-link {
+  color: $primary-color;
+  text-decoration: none;
+  font-weight: 600;
+  transition: all 0.3s ease;
+
+  &:hover {
+    color: $primary-dark;
+    text-decoration: underline;
+  }
+}
+
+// ===== UTILITY CLASSES =====
+.w-full {
+  width: 100%;
+}

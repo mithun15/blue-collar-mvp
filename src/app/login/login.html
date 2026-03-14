@@ -1,24 +1,53 @@
-<div
-  [formGroup]="loginForm"
-  style="
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    height: 100vh;
-    width: 100%;
-  "
->
-  <h2>Login</h2>
-  <div class="flex flex-col gap-1" style="margin-bottom: 1rem">
-    <p-inputnumber
-      mode="decimal"
-      inputId="withoutgrouping"
-      useGrouping="false"
-      formControlName="mobileNumber"
-    />
+<div class="login-container" [formGroup]="loginForm">
+  <div class="login-card">
+    <!-- Header -->
+    <div class="login-header">
+      <h1 class="login-title">Login</h1>
+      <p class="login-subtitle">Enter your credentials to continue</p>
+    </div>
+
+    <!-- Form -->
+    <form [formGroup]="loginForm" class="login-form">
+      <!-- User ID Field -->
+      <div class="form-group">
+        <label for="userId" class="form-label">User ID / Email</label>
+        <input
+          pInputText
+          id="userId"
+          type="text"
+          placeholder="Enter your email or mobile number"
+          class="form-input w-full"
+          formControlName="userId"
+        />
+      </div>
+
+      <!-- Password Field -->
+      <div class="form-group">
+        <label for="password" class="form-label">Password</label>
+        <input
+          pInputText
+          id="password"
+          type="password"
+          placeholder="Enter your password"
+          class="form-input w-full"
+          formControlName="password"
+        />
+      </div>
+
+      <!-- Continue Button -->
+      <p-button
+        label="Continue"
+        (click)="onContinue()"
+        [disabled]="!loginForm.valid"
+        class="w-full continue-button"
+      />
+    </form>
+
+    <!-- Footer -->
+    <div class="login-footer">
+      <p class="footer-text">
+        Don't have an account? <a href="#" class="footer-link">Sign up here</a>
+      </p>
+    </div>
   </div>
-  <button pButton severity="secondary" type="button" (click)="onContinue()">
-    <span pButtonLabel>Continue</span>
-  </button>
 </div>

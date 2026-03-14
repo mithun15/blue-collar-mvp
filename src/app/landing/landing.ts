@@ -16,4 +16,8 @@ export class Landing {
   getStarted() {
     this._router.navigate(['/first-sign-up']);
   }
+
+  login() {
+    this._router.navigate(['/login']);
+  }
 }
